@@ -1,6 +1,6 @@
 # travelshare
 
-## Project setup
+## 下载项目后运行以下命令初始化项目
 ```
 npm install
 ```
