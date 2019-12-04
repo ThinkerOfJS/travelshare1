@@ -11,56 +11,56 @@
 
 
 ## 3、项目截图如下：
-   ### _登录页面_
+   ### _登录页面：_
    ![登录](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/login.png)
    
    ---
    
-   ### _首页:_
+   ### _首页：_
    ![首页](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/home.png)
    
-   ### _游记:_
+   ### _游记：_
    ![游记](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/travels.png)
    
-   ### _写游记:_
+   ### _写游记：_
    ![写游记](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/writetravel.png)
    
-   ### _游记详情:_
+   ### _游记详情：_
    ![游记详情](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/travels_detail.png)
    
-   ### _评论:_
+   ### _评论：_
    ![评论](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/comment.png)
       
       
    ---
    
-   ### _去旅行:_
+   ### _去旅行：_
    ![去旅行](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/gotravel.png)
    
-   ### _景区推荐:_
+   ### _景区推荐：_
    ![景区推荐](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/jingqu.png)
    
-   ### _景区信息:_
+   ### _景区信息：_
    ![景点推荐](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/jingdian.png)
    
-   ### _三日游:_
+   ### _三日游：_
    ![三日游](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/yi_ri_you.png)
    
-   ### _门票购买:_
+   ### _门票购买：_
    ![门票购买](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/menpiao.png)
    
-   ### _加入购物车:_
+   ### _加入购物车：_
    ![加入购物车](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/buycar.png)
       
    
    ---
    
-   ### _我的:_
+   ### _我的：_
    ![我的](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/mine.png)
-   ### _我的1:_
+   ### _我的1：_
    ![我的1](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/mine1.png)
    
-   ### _个人动态:_
+   ### _个人动态：_
    ![个人动态](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/ge_ren_dong_tai.png)
 
 ## 4、下载项目后可以通过一下命令将项目运行在本地上
