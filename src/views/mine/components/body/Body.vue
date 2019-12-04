@@ -2,6 +2,10 @@
     <div id="body">
         <ul>
             <hr>
+            <li @click="goMyOrder(user.user_id)">
+                <span class="title">我的订单</span>
+            </li>
+            <hr>
             <li @click="goPersonalDynamic(user.user_id)">
                 <span class="title">个人动态</span>
                 <van-icon color="#999" name="chat-o" size="1.3rem"/>
@@ -45,6 +49,12 @@
             }
         },
         methods: {
+            goMyOrder(userId){
+                this.$router.push({
+                    name: 'myorder',
+                    params: { userId }
+                })
+            },
             goPersonalDynamic(userId){
                 this.$router.push({
                     name: 'personaldynamic',

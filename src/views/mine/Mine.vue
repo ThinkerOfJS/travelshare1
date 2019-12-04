@@ -7,7 +7,7 @@
         <Body :user="user" />
         <div class="btns">
             <van-button
-                @click="goChangeDocument(user.user_id)"
+                @click="showChange(user)"
                 class="btn"
                 round
                 plain
@@ -27,6 +27,59 @@
                 注销
             </van-button>
         </div>
+
+        <van-popup
+            v-model="show"
+            closeable
+            close-icon="close"
+            position="bottom"
+            round
+            :style="{ height: '60%' }"
+        >
+            <div class="change-box">
+                <van-cell-group>
+                    <van-field
+                            v-model="name"
+                            clearable
+                            label="昵称:"
+                            placeholder="请输入昵称"
+                    />
+
+                    <van-field
+                            v-model="signature"
+                            type="textarea"
+                            label="个性签名:"
+                            placeholder="请输入个性签名"
+                            clearable
+                            autosize
+                    />
+                    <van-field
+                            v-model="tel"
+                            label="手机号:"
+                            type="tel"
+                            placeholder="请输入手机号"
+                            clearable
+                    />
+                    <van-field
+                            v-model="email"
+                            label="邮箱地址:"
+                            placeholder="请输入邮箱地址"
+                            clearable
+                    />
+                </van-cell-group>
+                <van-button
+                        @click="change()"
+                        class="change-btn"
+                        plain
+                        color="#4ACBBD"
+                        type="primary"
+                >
+                    保存
+                </van-button>
+            </div>
+
+        </van-popup>
+
     </div>
 </template>
 
@@ -37,6 +90,11 @@
         name: "Mine",
         data(){
             return {
+                show: false,
+                name: '',
+                signature: '',
+                tel: '',
+                email: '',
                 user: {
                     user_id: 1,
                     user_name: '空城旧梦',
@@ -54,11 +112,21 @@
                     params: { userId }
                 })
             },
+            showChange(user){
+                this.show = true;
+                this.tel = user.user_phone;
+                this.email = user.user_email;
+                this.name = user.user_name;
+                this.signature = user.user_signature;
+            },
             goLogin(){
                 this.$router.push({
                     name: 'login',
                 });
             },
+            change(){
+                alert('修改成功');
+            }
         },
         components: {
             Header,
@@ -96,6 +164,14 @@
                 margin: 0 auto;
                 font-size: 1.1rem;
                 box-shadow: 0 0 9px #bababa;
+            }
+        }
+        .change-box{
+            width: 100%;
+            .change-btn{
+                margin-left: 50%;
+                left: -4rem;
+                width: 8rem;
             }
         }
     }

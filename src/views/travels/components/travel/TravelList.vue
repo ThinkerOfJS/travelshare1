@@ -48,7 +48,7 @@
             width: 49%;
             padding: 0.2rem;
             margin-top: 0.4rem;
-            min-height: 10.5rem;
+            max-height: 200px;
             border: 1px solid #f5f5f5;
             box-shadow: 0 0 9px #c0c0c0;
             img{

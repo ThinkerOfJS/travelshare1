@@ -35,19 +35,19 @@
                 recommendStory: [
                     {
                         storyId: 1,
-                        img_url: 'http://img1.imgtn.bdimg.com/it/u=2746120682,390938867&fm=26&gp=0.jpg',
+                        img_url: 'https://img.ivsky.com/img/tupian/pre/201904/11/hupo-005.jpg',
                         storyCategory: '故事',
                         storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了该怎么办了该怎么办了'
                     },
                     {
                         storyId: 2,
-                        img_url: 'http://img1.imgtn.bdimg.com/it/u=2746120682,390938867&fm=26&gp=0.jpg',
+                        img_url: 'https://img.ivsky.com/img/tupian/pre/201904/11/hupo-005.jpg',
                         storyCategory: '故事',
                         storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了该怎么办了该怎么办了'
                     },
                     {
                         storyId: 3,
-                        img_url: 'http://img1.imgtn.bdimg.com/it/u=2746120682,390938867&fm=26&gp=0.jpg',
+                        img_url: 'https://img.ivsky.com/img/tupian/pre/201904/11/hupo-005.jpg',
                         storyCategory: '故事',
                         storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了该怎么办了该怎么办了'
                     },

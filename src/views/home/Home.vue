@@ -18,7 +18,6 @@
     import Swipe from './components/swipe/Swipe'
     import Concentration from './components/concentration/Concentration'
     import Announcement from './components/announcement/Announcement'
-
     export default {
         name: "Home",
         data(){

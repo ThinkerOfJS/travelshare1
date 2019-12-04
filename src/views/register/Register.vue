@@ -21,7 +21,7 @@
                             v-model="username"
                             required
                             clearable
-                            label="用户名"
+                            label="用户名:"
                             placeholder="请输入用户名"
                     />
 
@@ -31,7 +31,7 @@
                             v-model="password"
                             type="password"
                             clearable
-                            label="密码"
+                            label="密码:"
                             placeholder="请输入密码"
                             required
                     />
@@ -39,22 +39,34 @@
             </div>
 
             <div class="btns">
-                <router-link to="/login">
-                    <van-button plain hairline round type="danger" size="normal" class="btn white">注册</van-button>
-                </router-link>
-                <router-link to="/login">
-                    <van-button plain hairline round type="danger" size="normal" class="btn white">返回</van-button>
-                </router-link>
+<!--                <router-link to="/login">-->
+                <van-button
+                        plain
+                        hairline
+                        round
+                        type="danger"
+                        size="normal"
+                        class="btn white"
+                        @click.prevent="registerUser">注册</van-button>
+<!--                </router-link>-->
+<!--                <router-link to="/login">-->
+                <van-button
+                        plain
+                        hairline
+                        round
+                        type="danger"
+                        size="normal"
+                        class="btn white"
+                        @click.prevent="back">返回</van-button>
+<!--                </router-link>-->
             </div>
-
-
-
         </div>
-
     </div>
 </template>
 
 <script>
+    import { register } from './../../service/index'
+    import { Toast, Notify, Dialog } from 'vant'
     export default {
         name: "Register",
         data(){
@@ -62,6 +74,49 @@
                 username: '',
                 password: '',
             }
+        },
+        methods: {
+            async registerUser(){
+                let _this = this;
+                if (!_this.username.trim() || !_this.password.trim()) {
+                    _this.notifyMsg("用户名或密码不能为空！");
+                    return ;
+                }
+                let result = await register(_this.username, _this.password);
+
+                if (result.status === 200) {
+                    if (!result.data.code) {
+                        Dialog.alert({
+                            title: '注册',
+                            message: '注册成功，请登录'
+                        }).then(() => {
+                            console.log('确认成功');
+                            _this.back();
+                        });
+                    } else {
+                        _this.notifyMsg(result.data.msg);
+                    }
+                } else {
+                    _this.notifyMsg('请求失败，请重新注册');
+                }
+            },
+            notifyMsg(msg){
+                // 提示信息
+                Notify({
+                    message: msg,
+                    duration: 1500,
+                    color: 'rgba(168,168,168,0.99)',
+                    background: '#f5f5f5'
+                });
+            },
+            back(){
+                this.$router.push({
+                    name: 'login'
+                });
+            }
+        },
+        components: {
+            [Dialog.Component.name]: Dialog.Component
         }
     }
 </script>

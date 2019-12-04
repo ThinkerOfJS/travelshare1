@@ -39,12 +39,24 @@
                 <template>{{ index }}</template>
             </van-image-preview>
         </div>
+        <hr style="margin: 0">
+        <div class="comment">
+            <div class="input" style="display: flex; justify-content: space-between;padding: 0.4rem;" >
+                <van-field v-model="comment" placeholder="" style="border: 1px solid #ebebeb; width: 16rem;" clearable/>
+                <van-button style="width: 4rem;" @click="addComment()" type="info" color="#87CEEB">发表</van-button>
+            </div>
+
+            <Comments :comments="comments"/>
+            <van-button class="btn" type="info" color="#87CEEB" round>加载更多</van-button>
+        </div>
     </div>
 </template>
 
 <script>
     import Vue from 'vue';
     import { Toast } from 'vant';
+    import Comments from './../components/Comments';
+
     Vue.use(Toast);
     export default {
         name: "TravelDesc",
@@ -52,10 +64,43 @@
             return {
                 show: false,
                 index: 1,
+                comment: '',
                 images: [
                     'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567323567640&di=1f48f1358291ad2d2454d336727bc69a&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201509%2F26%2F20150926115124_fYZ4U.jpeg',
                     'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567323567639&di=ef555e6529708a152823e3775090a423&imgtype=0&src=http%3A%2F%2Fimg0.ph.126.net%2FCXbGJWqudtgL0yTBsmjMZA%3D%3D%2F1105633708537445535.jpg',
                     'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567323567638&di=4045d4609cf99ca75da1325411163c28&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fblog%2F201312%2F28%2F20131228155908_mP8HF.jpeg'
+                ],
+                comments: [
+                    {
+                        cid: 1,
+                        username: '空城旧梦',
+                        date: '10-01 05:30',
+                        content: '呵呵1'
+                    },
+                    {
+                        cid: 2,
+                        username: '空城旧梦1',
+                        date: '10-01 05:22',
+                        content: '呵呵1'
+                    },
+                    {
+                        cid: 3,
+                        username: '空城旧梦2',
+                        date: '10-01 05:21',
+                        content: '呵呵1'
+                    },
+                    {
+                        cid: 4,
+                        username: '空城旧梦3',
+                        date: '10-01 05:20',
+                        content: '呵呵1'
+                    },
+                    {
+                        cid: 5,
+                        username: '空城旧梦4',
+                        date: '10-01 05:20',
+                        content: '呵呵1'
+                    },
                 ],
                 onClose() {
                     // do something
@@ -79,7 +124,20 @@
                     mask: true,
                     duration: 1500
                 });
+            },
+            addComment(){
+                let comment = {
+                    cid: this.comments.length + 1,
+                    username: '空城旧梦',
+                    date: new Date(),
+                    content: this.comment
+                };
+                this.comments.unshift(comment);
+                this.comment =  '';
             }
+        },
+        components: {
+            Comments
         }
     }
 </script>
@@ -102,7 +160,6 @@
             }
         }
         .content{
-            margin-bottom: 2.5rem;
             padding: 0.7rem 0.4rem 0.4rem;
             background-color: #ffffff;
 
@@ -136,6 +193,15 @@
                 padding: 0.2rem;
                 margin-top: 0.4rem;
                 font-size: 0.8rem;
+            }
+        }
+        .comment{
+            margin-bottom: 3.5rem;
+            .btn{
+                width: 15rem;
+                left: 50%;
+                margin-left: -7.5rem;
+                box-shadow: 0 0 9px #999;
             }
         }
 

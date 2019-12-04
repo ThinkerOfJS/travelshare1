@@ -1,5 +1,9 @@
 <template>
     <div id="login">
+        <!--<van-overlay :show="show">
+
+        </van-overlay>-->
+
         <van-image
                 class="image"
                 round
@@ -21,7 +25,7 @@
                             v-model="username"
                             required
                             clearable
-                            label="用户名"
+                            label="用户名:"
                             placeholder="请输入用户名"
                     />
 
@@ -31,7 +35,7 @@
                             v-model="password"
                             type="password"
                             clearable
-                            label="密码"
+                            label="密码:"
                             placeholder="请输入密码"
                             required
                     />
@@ -43,9 +47,16 @@
             </div>
 
 
-            <router-link to="/dashboard/home">
-                <van-button plain hairline round type="danger" size="normal" class="login_btn white">登录</van-button>
-            </router-link>
+                <!--<router-link to="/dashboard/home">-->
+            <van-button
+                plain
+                hairline
+                round
+                type="danger"
+                size="normal"
+                class="login_btn white"
+                @click.prevent="login">登录</van-button>
+                <!--</router-link>-->
 
 
         </div>
@@ -54,14 +65,54 @@
 </template>
 
 <script>
+    import { loginPwd } from './../../service/index'
+    import { Notify, Dialog } from 'vant'
     export default {
         name: "Login",
         data(){
             return {
                 username: '',
                 password: '',
+                show: false
             }
         },
+        methods: {
+            async login(){
+                let _this = this;
+                if (!_this.username.trim() || !_this.password.trim()) {
+                    _this.notifyMsg('用户名或密码不能为空');
+                    return ;
+                }
+                let result = await loginPwd(_this.username, _this.password);
+                // _this.show = true;
+                console.log('响应结果' + result.data.msg);
+                if (result.status === 200) {
+                    if (!result.data.code) {
+                        _this.show = false;
+                        _this.$router.push({
+                            name: 'home'
+                        });
+                    } else {
+                        _this.notifyMsg(result.data.msg);
+                    }
+                } else {
+                    Dialog.alert({
+                        message: '请求失败，请重新登录'
+                    }).then(() => {
+                        // on close
+                    });
+                }
+            },
+            notifyMsg(msg){
+                // 用于提示信息的方法
+                Notify({
+                    message: msg,
+                    duration: 1500,
+                    color: 'rgba(168,168,168,0.99)',
+                    background: '#f5f5f5',
+                });
+            }
+        }
     }
 </script>
 
@@ -92,14 +143,20 @@
             .fields{
                 margin: 1.17rem 0 0.58rem;
                 padding: 0;
+                input{
+                    color: white;
+                }
                 .van-cell{
                     padding: 0.58rem 0;
                     background-color: transparent;
-                    /*.van-field__body{*/
-                        /*.van-field__control{*/
-                            /*color: #ffffff;*/
-                        /*}*/
-                    /*}*/
+                    .van-cell__value{
+                        .van-field__body{
+                            .van-field__control{
+                                color: #ffffff;
+                            }
+                        }
+                    }
+
                 }
 
                 .van-cell:not(:last-child)::after{

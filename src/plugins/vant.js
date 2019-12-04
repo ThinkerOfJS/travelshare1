@@ -62,3 +62,30 @@ Vue.use(DropdownMenu).use(DropdownItem);
 // 标签
 import { Tag } from 'vant';
 Vue.use(Tag);
+
+// switch开关
+import { Switch } from 'vant';
+Vue.use(Switch);
+
+// 步进器
+import { Stepper } from 'vant';
+Vue.use(Stepper);
+
+// 添加联系人
+import { ContactCard, ContactList, ContactEdit } from 'vant';
+Vue
+    .use(ContactCard)
+    .use(ContactList)
+    .use(ContactEdit);
+
+// 提交订单栏
+import { SubmitBar } from 'vant';
+Vue.use(SubmitBar);
+
+// 遮罩层
+import { Overlay } from 'vant';
+Vue.use(Overlay);
+
+// 加载中
+import { Loading } from 'vant';
+Vue.use(Loading);

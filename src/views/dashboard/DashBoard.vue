@@ -1,6 +1,8 @@
 <template>
     <div id="dashboard">
+<!--        <transition :name="transitionName">-->
         <router-view />
+<!--        </transition>-->
         <van-tabbar
             v-model="active"
             active-color="#87CEEB"
@@ -19,13 +21,21 @@
         name: "DashBoard",
         data(){
             return {
-                active: Number(sessionStorage.getItem('tabBarActiveIndex')) || 0
+                active: Number(sessionStorage.getItem('tabBarActiveIndex')) || 0,
+                transitionName: 'van-slide-left'
+            }
+        },
+        watch: {
+            active(value){
+                let tabBarActiveIndex = value > 0 ? value : 0;
+                sessionStorage.setItem('tabBarActiveIndex', tabBarActiveIndex)
             }
         },
         created(){
             this.init();
         },
         methods: {
+            // 初始化导航栏状态
             init(){
                 let routeUrl = this.$route.path;
                 if (routeUrl === '/dashboard/home') {
@@ -33,12 +43,6 @@
                 }
             },
         },
-        watch: {
-            active(value){
-                let tabBarActiveIndex = value > 0 ? value : 0;
-                sessionStorage.setItem('tabBarActiveIndex', tabBarActiveIndex)
-            }
-        }
     }
 </script>
 

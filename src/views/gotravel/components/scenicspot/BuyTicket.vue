@@ -5,20 +5,38 @@
             <van-icon name="arrow-left" size="1.25rem" @click="goBack" color="#f5f5f5"/>
             <p class="title">门票</p>
         </div>
+        <!-- 景区图片和地点 -->
         <div class="header">
             <img :src="image" preview :preview-text="address" :alt="address" >
             <span class="address">{{ address }}</span>
         </div>
         <hr>
+        <!-- 门票推荐区域 -->
         <div class="body">
-            <span class="title">门票推荐</span>
+            <span class="title">门票推荐：</span>
             <van-icon size="1.5rem" color="red" name="hot-sale-o" />
+            <span class="ticket">{{ tickets[0].name }}</span>
+            <div class="tags" @click="goBuy(address, tickets[0].name, tickets[0].price)">
+                <van-tag class="size" color="#FF9900" plain>￥{{ tickets[0].price }}</van-tag>
+                <van-tag class="size" color="#FF9900">预定</van-tag>
+            </div>
         </div>
         <hr>
+        <!-- 门票列表区域 -->
+        <div class="ticket-list" v-for="(item, index) in tickets" :key="index">
+            <van-icon class="icon" name="coupon-o" color="red" />
+            <span class="ticket">{{ item.name }}</span>
+            <div class="tags" @click="goBuy(address, item.name, item.price)">
+                <van-tag class="size" color="#FF9900" plain>￥{{ item.price }}</van-tag>
+                <van-tag class="size" color="#FF9900">预定</van-tag>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+    import {mapState, mapMutations} from 'vuex';
+
     export default {
         name: "BuyTicket",
         data(){
@@ -31,7 +49,32 @@
                         name : "玉屏索道上行成人票",
                         price_mk : "90",
                         price : "90"
-                    }
+                    },
+                    {
+                        name : "太平索道上行成人票",
+                        price_mk : "90",
+                        price : "80"
+                    },
+                    {
+                        name : "云谷索道上行成人票",
+                        price_mk : "90",
+                        price : "100"
+                    },
+                    {
+                        name : "云谷索道上行成人票",
+                        price_mk : "90",
+                        price : "60"
+                    },
+                    {
+                        name : "云谷索道上行成人票",
+                        price_mk : "90",
+                        price : "90"
+                    },
+                    {
+                        name : "云谷索道上行成人票",
+                        price_mk : "90",
+                        price : "40"
+                    },
                 ],
             }
         },
@@ -39,9 +82,22 @@
             this.getScenicspotData();
         },
         methods: {
+            ...mapMutations(["ADD_TICKET"]),
             goBack(){
                 this.$router.go(-1);
             },
+            goBuy(address, ticketName, ticketPrice){
+                this.ADD_TICKET({
+                    ticketName,
+                    ticketPrice
+                });
+                // console.log(ticketName + '2------' + ticketPrice);
+                this.$router.push({
+                    name: 'order',
+                    params: { address }
+                });
+            },
+
             getScenicspotData(){
                 let scenicspotData = JSON.parse(this.$route.query.data);
                 this.sId = scenicspotData.sId;
@@ -55,6 +111,7 @@
 <style lang="scss" scoped>
     #buyticket{
         background-color: #ffffff;
+        margin-bottom: 3rem;
         .top{
             display: flex;
             width: 100%;
@@ -78,7 +135,8 @@
                 box-shadow: 0 0 9px #999;
             }
             .address{
-                font-size: 0.8rem;
+                font-weight: bold;
+                font-size: 0.85rem;
             }
         }
         .body{
@@ -90,7 +148,36 @@
                 color: #8c8c8c;
                 display: block;
                 font-size: 0.8rem;
+                font-weight: bold;
                 line-height: 200%;
+            }
+            .ticket{
+                line-height: 1.529rem;
+                font-size: 0.8rem;
+            }
+            .tags{
+                margin-left: 2.353rem;
+            }
+
+        }
+        .ticket-list{
+            display: flex;
+            justify-content: start;
+            padding: 0.588rem 1.176rem;
+            .icon{
+                line-height: 1.435rem;
+            }
+            .ticket{
+                line-height: 1.435rem;
+                font-size: 0.8rem;
+                margin-left: 0.588rem;
+            }
+            .tags{
+                margin-left: 4.7rem;
+                text-align: center;
+                .size{
+                    width: 2.4rem;
+                }
             }
         }
     }
