@@ -3,6 +3,7 @@ module.exports = {
   env: {
     node: true
   },
+  // test
   'extends': [
     'plugin:vue/essential',
     'eslint:recommended'
