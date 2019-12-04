@@ -11,12 +11,12 @@
 
 
 ## 3、项目截图如下：
-   #### 登录页面：
+   ### _登录页面_
    ![登录](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/login.png)
    
    ---
    
-   #### 首页
+   ### 首页
    ![首页](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/home.png)
    
    #### 游记
