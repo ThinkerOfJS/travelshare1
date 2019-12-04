@@ -1,6 +1,6 @@
 <template>
     <div id="my-order">
-        我的订单待开发
+        我的订单待开发中
     </div>
 </template>
 
