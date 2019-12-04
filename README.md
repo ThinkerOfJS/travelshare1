@@ -63,7 +63,7 @@
    ### _个人动态：_
    ![个人动态](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/ge_ren_dong_tai.png)
 
-
+---
 ## 4、下载项目后可以通过一下命令将项目运行在本地上
    ###下载项目后运行以下命令初始化项目
    ```
