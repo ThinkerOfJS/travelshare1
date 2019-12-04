@@ -63,33 +63,34 @@
    ### _个人动态：_
    ![个人动态](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/ge_ren_dong_tai.png)
 
+
 ## 4、下载项目后可以通过一下命令将项目运行在本地上
-###下载项目后运行以下命令初始化项目
-```
-npm install
-```
+   ###下载项目后运行以下命令初始化项目
+   ```
+   npm install
+   ```
 
-### 运行项目
-```
-npm run serve
-```
+   ### 运行项目
+   ```
+   npm run serve
+   ```
 
-### 将项目进行打包
-```
-npm run build
-```
+   ### 将项目进行打包
+   ```
+   npm run build
+   ```
 
-### 项目测试
-```
-npm run test
-```
+   ### 项目测试
+   ```
+   npm run test
+   ```
 
-### 代码规范检查
-```
-npm run lint
-```
+   ### 代码规范检查
+   ```
+   npm run lint
+   ```
 
-### 进行项目单元测试
-```
-npm run test:unit
-```
+   ### 进行项目单元测试
+   ```
+   npm run test:unit
+   ```
