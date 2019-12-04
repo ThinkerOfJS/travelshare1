@@ -16,47 +16,51 @@
    
    ---
    
-   ### 首页
+   ### _首页_
    ![首页](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/home.png)
    
-   #### 游记
+   #### _游记_
    ![游记](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/travels.png)
    
-   #### 写游记
+   #### _写游记_
    ![写游记](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/writetravel.png)
    
-   #### 游记详情
+   #### _游记详情_
    ![游记详情](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/travels_detail.png)
    
-   #### 评论
+   #### _评论__
    ![评论](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/comment.png)
       
       
    ---
    
-   #### 去旅行
+   #### _去旅行_
    ![去旅行](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/gotravel.png)
    
-   #### 景区推荐
+   #### _景区推荐_
    ![景区推荐](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/jingqu.png)
    
-   #### 景点推荐
+   #### _景区信息_
    ![景点推荐](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/jingdian.png)
    
-   #### 三日游
+   #### _三日游_
    ![三日游](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/yi_ri_you.png)
    
-   #### 门票购买
+   #### _门票购买_
    ![门票购买](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/menpiao.png)
+   
+   #### _加入购物车_
+   ![加入购物车](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/buycar.png)
+      
    
    ---
    
-   #### 我的
+   #### _我的_
    ![我的](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/mine.png)
-   #### 我的
+   #### _我的_
    ![我的1](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/mine1.png)
    
-   #### 个人动态
+   #### _个人动态_
    ![个人动态](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/ge_ren_dong_tai.png)
 
 ## 4、下载项目后可以通过一下命令将项目运行在本地上
