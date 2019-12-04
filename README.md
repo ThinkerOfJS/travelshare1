@@ -19,45 +19,45 @@
    ### _首页_
    ![首页](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/home.png)
    
-   #### _游记_
+   ### _游记_
    ![游记](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/travels.png)
    
-   #### _写游记_
+   ### _写游记_
    ![写游记](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/writetravel.png)
    
-   #### _游记详情_
+   ### _游记详情_
    ![游记详情](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/travels_detail.png)
    
-   #### _评论__
+   ### _评论__
    ![评论](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/comment.png)
       
       
    ---
    
-   #### _去旅行_
+   ### _去旅行_
    ![去旅行](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/gotravel.png)
    
-   #### _景区推荐_
+   ### _景区推荐_
    ![景区推荐](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/jingqu.png)
    
-   #### _景区信息_
+   ### _景区信息_
    ![景点推荐](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/jingdian.png)
    
-   #### _三日游_
+   ### _三日游_
    ![三日游](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/yi_ri_you.png)
    
-   #### _门票购买_
+   ### _门票购买_
    ![门票购买](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/menpiao.png)
    
-   #### _加入购物车_
+   ### _加入购物车_
    ![加入购物车](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/buycar.png)
       
    
    ---
    
-   #### _我的_
+   ### _我的_
    ![我的](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/mine.png)
-   #### _我的_
+   ### _我的1_
    ![我的1](https://github.com/thinkerofjs/travelshare1/raw/travelshare_v1.0/src/images/mine1.png)
    
    #### _个人动态_
