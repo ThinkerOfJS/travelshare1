@@ -4,7 +4,9 @@ import {
     REDUCE_TICKET,
     SELECTED_SINGER_TICKETS,
     SELECTED_All_TICKETS,
-    CLEAR_ORDER
+    CLEAR_ORDER,
+    SAVE_USER,
+    GET_USER
 } from './mutations-type'
 
 import { getStore, setStore, removeStore } from './../config/global'
@@ -96,4 +98,20 @@ export default {
         state.tickets = [];
         setStore('tickets', state.tickets);
     },
+
+    // 保存用户信息
+    [SAVE_USER](state, users) {
+
+        state.userInfo = users;
+
+        setStore('userInfo', state.userInfo);
+    },
+
+    // 获取用户信息
+    [GET_USER](state) {
+        let user = getStore('userInfo');
+        if (user) {
+            state.userInfo = JSON.parse(user);
+        }
+    }
 }

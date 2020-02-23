@@ -105,7 +105,7 @@ export default function () {
         hiddenModules: [],
         // 自定义要显示的模块，并控制顺序
         visibleModules: [
-            // "text",
+            "text",
             // "color",
             "font",
             "align",
@@ -113,7 +113,7 @@ export default function () {
             // "link",
             // "unlink",
             // "tabulation",
-            "image",
+            // "image",
             "hr",
             // "eraser",
             // "undo",

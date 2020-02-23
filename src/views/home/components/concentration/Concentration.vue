@@ -28,35 +28,35 @@
                 storyList: [
                     {
                         id: 1,
-                        img_url: 'http://img1.imgtn.bdimg.com/it/u=2746120682,390938867&fm=26&gp=0.jpg',
+                        img_url: require('../../../../images/youji1.jpeg'),
                         storyCategory: '故事',
                         storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了'
                     },
                     {
                         id: 2,
-                        img_url: 'http://img1.imgtn.bdimg.com/it/u=2746120682,390938867&fm=26&gp=0.jpg',
+                        img_url: require('../../../../images/youji2.jpeg'),
                         storyCategory: '故事',
                         storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了'
                     },
                     {
                         id: 3,
-                        img_url: 'http://img1.imgtn.bdimg.com/it/u=2746120682,390938867&fm=26&gp=0.jpg',
+                        img_url: require('../../../../images/youji3.jpg'),
                         storyCategory: '故事',
                         storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了'
                     },{
                         id: 4,
-                        img_url: 'http://img1.imgtn.bdimg.com/it/u=2746120682,390938867&fm=26&gp=0.jpg',
+                        img_url: require('../../../../images/youji4.jpg'),
                         storyCategory: '故事',
                         storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了'
                     },{
                         id: 5,
-                        img_url: 'http://img1.imgtn.bdimg.com/it/u=2746120682,390938867&fm=26&gp=0.jpg',
+                        img_url: require('../../../../images/youji5.jpg'),
                         storyCategory: '故事',
                         storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了'
                     },
                     {
                         id: 6,
-                        img_url: 'http://img1.imgtn.bdimg.com/it/u=2746120682,390938867&fm=26&gp=0.jpg',
+                        img_url: require('../../../../images/youji6.jpg'),
                         storyCategory: '故事',
                         storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了'
                     },
@@ -92,7 +92,6 @@
         .wrapper{
             margin-top: 0.5rem;
             display: -webkit-box;
-            overflow-style: auto;
             overflow-x: scroll;
             overflow-scrolling: touch;
 
@@ -108,6 +107,7 @@
 
                 img{
                     width: 100%;
+                    height: 2.941rem;
                 }
 
                 .storyCategory{
@@ -126,5 +126,7 @@
                 }
             }
         }
+        /*隐藏滚动条*/
+        .wrapper::-webkit-scrollbar {display:none}
     }
 </style>

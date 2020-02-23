@@ -66,9 +66,9 @@
                 index: 1,
                 comment: '',
                 images: [
-                    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567323567640&di=1f48f1358291ad2d2454d336727bc69a&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201509%2F26%2F20150926115124_fYZ4U.jpeg',
-                    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567323567639&di=ef555e6529708a152823e3775090a423&imgtype=0&src=http%3A%2F%2Fimg0.ph.126.net%2FCXbGJWqudtgL0yTBsmjMZA%3D%3D%2F1105633708537445535.jpg',
-                    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567323567638&di=4045d4609cf99ca75da1325411163c28&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fblog%2F201312%2F28%2F20131228155908_mP8HF.jpeg'
+                    require('../images/travels_detail.jpg'),
+                    require('../images/travels_detail1.jpeg'),
+                    require('../images/travels_detail2.jpg')
                 ],
                 comments: [
                     {

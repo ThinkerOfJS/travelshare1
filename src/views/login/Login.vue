@@ -1,8 +1,5 @@
 <template>
     <div id="login">
-        <!--<van-overlay :show="show">
-
-        </van-overlay>-->
 
         <van-image
                 class="image"
@@ -11,7 +8,7 @@
                 width="10rem"
                 height="10rem"
                 fit="contain"
-                src="http://pic1.win4000.com/wallpaper/e/57b668cd660c1.jpg"
+                :src="logo"
         />
         <div class="content">
             <div class="title white">
@@ -57,28 +54,34 @@
                 class="login_btn white"
                 @click.prevent="login">登录</van-button>
                 <!--</router-link>-->
-
-
         </div>
 
     </div>
 </template>
 
 <script>
-    import { loginPwd } from './../../service/index'
-    import { Notify, Dialog } from 'vant'
+    import { loginPwd, getUserInfo} from './../../service/index'
+    import { Notify, Dialog} from 'vant'
+    import { mapState, mapMutations } from 'vuex'
     export default {
         name: "Login",
         data(){
             return {
+                ...mapState['userInfo'],
                 username: '',
                 password: '',
-                show: false
+                show: false,
+                logo: require('../../images/login_logo.jpg')
             }
         },
+        mounted() {
+
+        },
         methods: {
+            ...mapMutations['SAVE_USER'],
             async login(){
                 let _this = this;
+
                 if (!_this.username.trim() || !_this.password.trim()) {
                     _this.notifyMsg('用户名或密码不能为空');
                     return ;
@@ -91,6 +94,9 @@
                 console.log('响应结果' + result.data.msg);
                 if (result.status === 200) {
                     if (!result.data.code) {
+                        let userInfo = await getUserInfo(_this.username);
+                        _this.SAVE_USER(userInfo);
+
                         _this.show = false;
                         _this.$router.push({
                             name: 'home'
@@ -105,9 +111,6 @@
                         // on close
                     });
                 }
-                _this.$router.push({
-                    name: 'home'
-                });
             },
             notifyMsg(msg){
                 // 用于提示信息的方法

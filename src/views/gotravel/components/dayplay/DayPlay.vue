@@ -3,7 +3,7 @@
         <!-- 顶部标题栏 -->
         <div class="top">
             <van-icon name="arrow-left" size="1.25rem" @click="goBack" color="#f5f5f5"/>
-            <p class="title">一日游</p>
+            <p class="title">三日游</p>
         </div>
         <!-- 一日游图片区域 -->
         <div class="img">

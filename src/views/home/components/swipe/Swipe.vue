@@ -35,12 +35,12 @@
                     }
                 },
                 imgs: [
-                    { img_url: 'http://image.qmango.com/upload/2013813114718.jpg' },
-                    { img_url: 'http://img.article.pchome.net/00/44/11/18/pic_lib/wm/1.jpg' },
-                    { img_url: 'http://pic1.win4000.com/wallpaper/e/57b668cd660c1.jpg' },
-                    { img_url: 'http://pic1.win4000.com/wallpaper/6/582567c7b500f.jpg' },
-                    { img_url: 'http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1208/07/c0/12746020_1344317236877.jpg' },
-                    { img_url: 'http://i8.download.fd.pchome.net/t_600x1024/g1/M00/12/17/ooYBAFae4MiIOvMYAAiZaPjOdcUAAC2pQPuPcEACJmA105.jpg' },
+                    { img_url: require('../../../../images/home_swipe1.jpg') },
+                    { img_url: require('../../../../images/home_swipe2.jpg') },
+                    { img_url: require('../../../../images/home_swipe3.jpg') },
+                    { img_url: require('../../../../images/home_swipe4.jpg') },
+                    { img_url: require('../../../../images/home_swipe5.jpg') },
+                    { img_url: require('../../../../images/home_swipe6.jpg') },
                 ]
             }
         },

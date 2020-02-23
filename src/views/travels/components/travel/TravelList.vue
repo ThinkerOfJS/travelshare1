@@ -53,6 +53,7 @@
             box-shadow: 0 0 9px #c0c0c0;
             img{
                 width: 100%;
+                height: 7.059rem;
             }
 
             .travel-content{

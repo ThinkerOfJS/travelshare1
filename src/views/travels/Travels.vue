@@ -48,24 +48,24 @@
                 storyList: [
                     {
                         storyId: 1,
-                        img_url: 'https://tse4-mm.cn.bing.net/th?id=OIP.0QuhtF0h9HRhZcYwYqoXfwHaEK&w=263&h=160&c=7&o=5&pid=1.7',
+                        img_url: require('../../images/youji8.jpeg'),
                         storyPlace: '北京',
                         storyCategory: '美食',
                         storyTime: '2019-9-3',
-                        storyContent: '站在北京的街头'
+                        storyContent: '站在北京的街头，仿佛闻到的老老冰棍的味道。'
                     },
                     {
                         storyId: 2,
                         img_url: 'https://tse4-mm.cn.bing.net/th?id=OIP.0QuhtF0h9HRhZcYwYqoXfwHaEK&w=263&h=160&c=7&o=5&pid=1.7',
-                        storyPlace: '北京',
-                        storyCategory: '美食',
+                        storyPlace: '宁波',
+                        storyCategory: '民宿',
                         storyTime: '2019-9-3',
                         storyContent: '站在北京的街头'
                     },
                     {
                         storyId: 3,
                         img_url: 'https://tse4-mm.cn.bing.net/th?id=OIP.0QuhtF0h9HRhZcYwYqoXfwHaEK&w=263&h=160&c=7&o=5&pid=1.7',
-                        storyPlace: '北京',
+                        storyPlace: '上海',
                         storyCategory: '美食',
                         storyTime: '2019-9-3',
                         storyContent: '站在北京的街头'
@@ -73,52 +73,11 @@
                     {
                         storyId: 4,
                         img_url: 'https://tse4-mm.cn.bing.net/th?id=OIP.0QuhtF0h9HRhZcYwYqoXfwHaEK&w=263&h=160&c=7&o=5&pid=1.7',
-                        storyPlace: '北京',
+                        storyPlace: '苏州',
                         storyCategory: '美食',
                         storyTime: '2019-9-3',
                         storyContent: '站在北京的街头'
-                    },
-                    {
-                        storyId: 5,
-                        img_url: 'https://tse4-mm.cn.bing.net/th?id=OIP.0QuhtF0h9HRhZcYwYqoXfwHaEK&w=263&h=160&c=7&o=5&pid=1.7',
-                        storyPlace: '北京',
-                        storyCategory: '美食',
-                        storyTime: '2019-9-3',
-                        storyContent: '站在北京的街头'
-                    },
-                    {
-                        storyId: 6,
-                        img_url: 'https://tse4-mm.cn.bing.net/th?id=OIP.0QuhtF0h9HRhZcYwYqoXfwHaEK&w=263&h=160&c=7&o=5&pid=1.7',
-                        storyPlace: '北京',
-                        storyCategory: '美食',
-                        storyTime: '2019-9-3',
-                        storyContent: '站在北京的街头'
-                    },
-                    {
-                        storyId: 7,
-                        img_url: 'https://tse4-mm.cn.bing.net/th?id=OIP.0QuhtF0h9HRhZcYwYqoXfwHaEK&w=263&h=160&c=7&o=5&pid=1.7',
-                        storyPlace: '北京',
-                        storyCategory: '美食',
-                        storyTime: '2019-9-3',
-                        storyContent: '站在北京的街头'
-                    },
-                    {
-                        storyId: 8,
-                        img_url: 'https://tse4-mm.cn.bing.net/th?id=OIP.0QuhtF0h9HRhZcYwYqoXfwHaEK&w=263&h=160&c=7&o=5&pid=1.7',
-                        storyPlace: '北京',
-                        storyCategory: '美食',
-                        storyTime: '2019-9-3',
-                        storyContent: '站在北京的街头'
-                    },
-                    {
-                        storyId: 9,
-                        img_url: 'https://tse4-mm.cn.bing.net/th?id=OIP.0QuhtF0h9HRhZcYwYqoXfwHaEK&w=263&h=160&c=7&o=5&pid=1.7',
-                        storyPlace: '北京',
-                        storyCategory: '美食',
-                        storyTime: '2019-9-3',
-                        storyContent: '站在北京的街头'
-                    },
-
+                    }
                 ]
             }
         },

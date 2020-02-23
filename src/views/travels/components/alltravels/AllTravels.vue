@@ -35,43 +35,43 @@
                 recommendStory: [
                     {
                         storyId: 1,
-                        img_url: 'https://img.ivsky.com/img/tupian/pre/201904/11/hupo-005.jpg',
+                        img_url: require('../../../../images/youji1.jpeg'),
                         storyCategory: '故事',
                         storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了该怎么办了该怎么办了'
                     },
                     {
                         storyId: 2,
-                        img_url: 'https://img.ivsky.com/img/tupian/pre/201904/11/hupo-005.jpg',
+                        img_url: require('../../../../images/youji2.jpeg'),
                         storyCategory: '故事',
                         storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了该怎么办了该怎么办了'
                     },
                     {
                         storyId: 3,
-                        img_url: 'https://img.ivsky.com/img/tupian/pre/201904/11/hupo-005.jpg',
+                        img_url: require('../../../../images/youji3.jpg'),
                         storyCategory: '故事',
                         storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了该怎么办了该怎么办了'
                     },
                     {
                         storyId: 4,
-                        img_url: 'http://img1.imgtn.bdimg.com/it/u=2746120682,390938867&fm=26&gp=0.jpg',
+                        img_url: require('../../../../images/youji4.jpg'),
                         storyCategory: '故事',
                         storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了该怎么办了该怎么办了'
                     },
                     {
                         storyId: 5,
-                        img_url: 'http://img1.imgtn.bdimg.com/it/u=2746120682,390938867&fm=26&gp=0.jpg',
+                        img_url: require('../../../../images/youji5.jpg'),
                         storyCategory: '故事',
                         storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了该怎么办了该怎么办了'
                     },
                     {
                         storyId: 6,
-                        img_url: 'http://img1.imgtn.bdimg.com/it/u=2746120682,390938867&fm=26&gp=0.jpg',
+                        img_url: require('../../../../images/youji7.jpeg'),
                         storyCategory: '故事',
                         storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了该怎么办了该怎么办了'
                     },
                     {
                         storyId: 7,
-                        img_url: 'http://img1.imgtn.bdimg.com/it/u=2746120682,390938867&fm=26&gp=0.jpg',
+                        img_url: require('../../../../images/youji6.jpg'),
                         storyCategory: '故事',
                         storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了该怎么办了该怎么办了'
                     },
@@ -129,6 +129,7 @@
 
                 img{
                     width: 100%;
+                    height: 3.235rem;
                 }
 
                 .storyInfo{
@@ -151,6 +152,8 @@
                 }
             }
         }
+        /*隐藏滚动条*/
+        .wrapper::-webkit-scrollbar {display:none}
         .youlikeTitle{
             margin-top: 3rem;
         }

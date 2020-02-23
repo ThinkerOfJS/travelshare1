@@ -25,7 +25,7 @@
                         round
                         width="5rem"
                         height="5rem"
-                        src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567572515994&di=e47b163fd5e3fd599338ca712673f0f7&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F45858c1f11e0b3c30bd0113c6f7ab88f5847034e51d57-Hprwwb_fw658"
+                        :src="scenicspot_logo"
                 />
                 <span class="text">景区门票</span>
             </div>
@@ -35,7 +35,7 @@
                         round
                         width="5rem"
                         height="5rem"
-                        src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567572515993&di=3e461f121af0320f240e7bf492afb022&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2017-12-11%2F5a2e68d678ddd.jpg"
+                        :src="dayplay_logo"
                 />
                 <span class="text">一日游</span>
             </div>
@@ -57,14 +57,16 @@
         name: "GoTravel",
         data(){
             return {
+                scenicspot_logo: require('../../images/jingqu_ticket.jpg'),
+                dayplay_logo: require('../../images/dayplay_logo.jpg'),
                 value: '',
-                place: '上海',
+                place: '',
                 scenicspotList: [
                     {
                         id: '1',
-                        scenicspot_img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567583112339&di=85d6913157e38cfdf6b13a3d6d261440&imgtype=0&src=http%3A%2F%2Fimg3.tuniucdn.com%2Fimages%2F2011-09-28%2FG%2FG75pd110Z86qqT20.jpg',
-                        scenicspot_name: '北京天安门北京天安门北京天安门北京天安门北京天安门北京天安门北京天安门',
-                        scenicspot_introduce: '  北京天安门 ',
+                        scenicspot_img: require('../../images/bj_home.jpeg'),
+                        scenicspot_name: '北京天安门',
+                        scenicspot_introduce: '  坐落在中华人民共和国首都北京市的中心、故宫的南端，与天安门广场以及人民英雄纪念碑、毛主席纪念堂、人民大会堂、中国国家博物馆隔长安街相望，占地面积4800平方米 ',
                     },
                     {
                         id: '2',
@@ -89,36 +91,7 @@
                         scenicspot_img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567583112339&di=85d6913157e38cfdf6b13a3d6d261440&imgtype=0&src=http%3A%2F%2Fimg3.tuniucdn.com%2Fimages%2F2011-09-28%2FG%2FG75pd110Z86qqT20.jpg',
                         scenicspot_name: '北京天安门',
                         scenicspot_introduce: '   坐落在中华人民共和国首都北京市的中心、故宫的南端，与天安门广场以及人民英雄纪念碑、毛主席纪念堂、人民大会堂、中国国家博物馆隔长安街相望，占地面积4800平方米',
-                    },{
-                        id: '6',
-                        scenicspot_img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567583112339&di=85d6913157e38cfdf6b13a3d6d261440&imgtype=0&src=http%3A%2F%2Fimg3.tuniucdn.com%2Fimages%2F2011-09-28%2FG%2FG75pd110Z86qqT20.jpg',
-                        scenicspot_name: '北京天安门',
-                        scenicspot_introduce: '   坐落在中华人民共和国首都北京市的中心、故宫的南端，与天安门广场以及人民英雄纪念碑、毛主席纪念堂、人民大会堂、中国国家博物馆隔长安街相望，占地面积4800平方米',
-                    },
-                    {
-                        id: '7',
-                        scenicspot_img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567583112339&di=85d6913157e38cfdf6b13a3d6d261440&imgtype=0&src=http%3A%2F%2Fimg3.tuniucdn.com%2Fimages%2F2011-09-28%2FG%2FG75pd110Z86qqT20.jpg',
-                        scenicspot_name: '北京天安门',
-                        scenicspot_introduce: '   坐落在中华人民共和国首都北京市的中心、故宫的南端，与天安门广场以及人民英雄纪念碑、毛主席纪念堂、人民大会堂、中国国家博物馆隔长安街相望，占地面积4800平方米',
-                    },
-                    {
-                        id: '8',
-                        scenicspot_img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567583112339&di=85d6913157e38cfdf6b13a3d6d261440&imgtype=0&src=http%3A%2F%2Fimg3.tuniucdn.com%2Fimages%2F2011-09-28%2FG%2FG75pd110Z86qqT20.jpg',
-                        scenicspot_name: '北京天安门',
-                        scenicspot_introduce: '   坐落在中华人民共和国首都北京市的中心、故宫的南端，与天安门广场以及人民英雄纪念碑、毛主席纪念堂、人民大会堂、中国国家博物馆隔长安街相望，占地面积4800平方米',
-                    },
-                    {
-                        id: '9',
-                        scenicspot_img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567583112339&di=85d6913157e38cfdf6b13a3d6d261440&imgtype=0&src=http%3A%2F%2Fimg3.tuniucdn.com%2Fimages%2F2011-09-28%2FG%2FG75pd110Z86qqT20.jpg',
-                        scenicspot_name: '北京天安门',
-                        scenicspot_introduce: '   坐落在中华人民共和国首都北京市的中心、故宫的南端，与天安门广场以及人民英雄纪念碑、毛主席纪念堂、人民大会堂、中国国家博物馆隔长安街相望，占地面积4800平方米',
-                    },
-                    {
-                        id: '10',
-                        scenicspot_img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567583112339&di=85d6913157e38cfdf6b13a3d6d261440&imgtype=0&src=http%3A%2F%2Fimg3.tuniucdn.com%2Fimages%2F2011-09-28%2FG%2FG75pd110Z86qqT20.jpg',
-                        scenicspot_name: '北京天安门',
-                        scenicspot_introduce: '   坐落在中华人民共和国首都北京市的中心、故宫的南端，与天安门广场以及人民英雄纪念碑、毛主席纪念堂、人民大会堂、中国国家博物馆隔长安街相望，占地面积4800平方米',
-                    },
+                    }
                 ],
                 showTime: false
             }
