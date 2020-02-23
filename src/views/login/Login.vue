@@ -83,28 +83,31 @@
                     _this.notifyMsg('用户名或密码不能为空');
                     return ;
                 }
+                // _this.$router.push({
+                //     name: 'home'
+                // });
+                let result = await loginPwd(_this.username, _this.password);
+                // _this.show = true;
+                console.log('响应结果' + result.data.msg);
+                if (result.status === 200) {
+                    if (!result.data.code) {
+                        _this.show = false;
+                        _this.$router.push({
+                            name: 'home'
+                        });
+                    } else {
+                        _this.notifyMsg(result.data.msg);
+                    }
+                } else {
+                    Dialog.alert({
+                        message: '请求失败，请重新登录'
+                    }).then(() => {
+                        // on close
+                    });
+                }
                 _this.$router.push({
                     name: 'home'
                 });
-                // let result = await loginPwd(_this.username, _this.password);
-                // // _this.show = true;
-                // console.log('响应结果' + result.data.msg);
-                // if (result.status === 200) {
-                //     if (!result.data.code) {
-                //         _this.show = false;
-                //         _this.$router.push({
-                //             name: 'home'
-                //         });
-                //     } else {
-                //         _this.notifyMsg(result.data.msg);
-                //     }
-                // } else {
-                //     Dialog.alert({
-                //         message: '请求失败，请重新登录'
-                //     }).then(() => {
-                //         // on close
-                //     });
-                // }
             },
             notifyMsg(msg){
                 // 用于提示信息的方法
