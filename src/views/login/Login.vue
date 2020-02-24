@@ -78,7 +78,7 @@
 
         },
         methods: {
-            ...mapMutations['SAVE_USER'],
+            ...mapMutations(["SAVE_USER"]),
             async login(){
                 let _this = this;
 
@@ -95,6 +95,7 @@
                 if (result.status === 200) {
                     if (!result.data.code) {
                         let userInfo = await getUserInfo(_this.username);
+                        console.log('用户信息',userInfo);
                         _this.SAVE_USER(userInfo);
 
                         _this.show = false;

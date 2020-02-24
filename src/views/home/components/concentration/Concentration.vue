@@ -28,38 +28,32 @@
                 storyList: [
                     {
                         id: 1,
-                        img_url: require('../../../../images/youji1.jpeg'),
+                        img_url: require('../../../../images/travels_detail1.jpeg'),
                         storyCategory: '故事',
-                        storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了'
+                        storyContent: '那是一个带着书香的姑娘，长发婆娑，我与她相遇在梅雨过后的江南小巷。'
                     },
                     {
                         id: 2,
                         img_url: require('../../../../images/youji2.jpeg'),
-                        storyCategory: '故事',
-                        storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了'
+                        storyCategory: '美食',
+                        storyContent: '缙云烧饼是真的好次，外酥里嫩，薄厚恰到好处，葱花的香味能够在嘴里久久不散。'
                     },
                     {
                         id: 3,
                         img_url: require('../../../../images/youji3.jpg'),
-                        storyCategory: '故事',
-                        storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了'
+                        storyCategory: '民宿',
+                        storyContent: '真是让人激动，宁波的清风酒店，独特的室内装潢，热情的人工服务。'
                     },{
                         id: 4,
                         img_url: require('../../../../images/youji4.jpg'),
                         storyCategory: '故事',
-                        storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了'
+                        storyContent: '人生处处有惊喜，早上4点多起床，就是为了看一严日出，功夫不负有心人，虽然累了点。'
                     },{
                         id: 5,
                         img_url: require('../../../../images/youji5.jpg'),
-                        storyCategory: '故事',
-                        storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了'
-                    },
-                    {
-                        id: 6,
-                        img_url: require('../../../../images/youji6.jpg'),
-                        storyCategory: '故事',
-                        storyContent: '今天的风儿甚是喧嚣,我都不知道该怎么办了'
-                    },
+                        storyCategory: '美食',
+                        storyContent: '想吃螃蟹，淡黄色的蟹黄，香气四溢，闻着想吃，吃者流泪啊。'
+                    }
                 ]
             }
         },

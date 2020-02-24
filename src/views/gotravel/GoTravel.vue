@@ -37,7 +37,7 @@
                         height="5rem"
                         :src="dayplay_logo"
                 />
-                <span class="text">一日游</span>
+                <span class="text">三日游</span>
             </div>
         </div>
 

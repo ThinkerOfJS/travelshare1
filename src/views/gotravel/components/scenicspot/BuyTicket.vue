@@ -46,35 +46,15 @@
                 address: '',
                 tickets : [
                     {
-                        name : "玉屏索道上行成人票",
-                        price_mk : "90",
-                        price : "90"
+                        name : "毛主席纪念堂成人票",
+                        price_mk : "190",
+                        price : "180"
                     },
                     {
-                        name : "太平索道上行成人票",
-                        price_mk : "90",
-                        price : "80"
-                    },
-                    {
-                        name : "云谷索道上行成人票",
-                        price_mk : "90",
-                        price : "100"
-                    },
-                    {
-                        name : "云谷索道上行成人票",
-                        price_mk : "90",
-                        price : "60"
-                    },
-                    {
-                        name : "云谷索道上行成人票",
-                        price_mk : "90",
-                        price : "90"
-                    },
-                    {
-                        name : "云谷索道上行成人票",
-                        price_mk : "90",
-                        price : "40"
-                    },
+                        name : "国家博物馆成人票",
+                        price_mk : "200",
+                        price : "190"
+                    }
                 ],
             }
         },

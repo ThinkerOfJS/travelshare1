@@ -21,77 +21,39 @@
                 storyList: [
                     {
                         storyId: 1,
-                        img_url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567250239460&di=a68d1445f6d7d81f6ae05a813c243feb&imgtype=0&src=http%3A%2F%2Fimg1.ph.126.net%2FcKSYoOU_Ic5VSP5FAiUfeA%3D%3D%2F6631444898187314326.gif',
+                        img_url: require('../../images/lbg.jpg'),
                         storyPlace: '北京',
                         storyCategory: '美食',
                         storyTime: '2019-9-3',
-                        storyContent: '站在北京的街头站在北京的街头站在北京的街头'
+                        storyContent: '站在北京的街头，仿佛闻到的老老冰棍的味道。香香甜甜，夏天里能吃上一支老冰棍，人都会凉爽一大截'
                     },
                     {
                         storyId: 2,
-                        img_url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567250239460&di=a68d1445f6d7d81f6ae05a813c243feb&imgtype=0&src=http%3A%2F%2Fimg1.ph.126.net%2FcKSYoOU_Ic5VSP5FAiUfeA%3D%3D%2F6631444898187314326.gif',
-                        storyPlace: '北京',
-                        storyCategory: '美食',
-                        storyTime: '2019-9-3',
-                        storyContent: '站在北京的街头'
+                        img_url: require('./../../images/ls.jpg'),
+                        storyPlace: '宁波',
+                        storyCategory: '民宿',
+                        storyTime: '2020-1-3',
+                        storyContent: '宁波的一些旅馆都还是很不错的，物美价廉，特别是清风旅社，里面的装潢精美，一些人工服务也比较到位，爱了爱了。'
                     },
                     {
                         storyId: 3,
-                        img_url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567250239460&di=a68d1445f6d7d81f6ae05a813c243feb&imgtype=0&src=http%3A%2F%2Fimg1.ph.126.net%2FcKSYoOU_Ic5VSP5FAiUfeA%3D%3D%2F6631444898187314326.gif',
-                        storyPlace: '北京',
+                        img_url: require("../../images/sb.jpg"),
+                        storyPlace: '上海',
                         storyCategory: '美食',
                         storyTime: '2019-9-3',
-                        storyContent: '站在北京的街头'
+                        storyContent: '上海的鲜肉月饼，既然来到上海旅游，肯定要尝试下当地的鲜肉月饼，这种月饼里面放了很多新鲜的猪肉，制作出来的月饼味道特别棒，' +
+                            '外皮酥嫩，还有浓郁的香味，吃过一次之后就会知道是名不虚传。'
                     },
                     {
                         storyId: 4,
-                        img_url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567250239460&di=a68d1445f6d7d81f6ae05a813c243feb&imgtype=0&src=http%3A%2F%2Fimg1.ph.126.net%2FcKSYoOU_Ic5VSP5FAiUfeA%3D%3D%2F6631444898187314326.gif',
-                        storyPlace: '北京',
+                        img_url: require("../../images/szms.png"),
+                        storyPlace: '苏州',
                         storyCategory: '美食',
                         storyTime: '2019-9-3',
-                        storyContent: '站在北京的街头'
-                    },
-                    {
-                        storyId: 5,
-                        img_url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567250239460&di=a68d1445f6d7d81f6ae05a813c243feb&imgtype=0&src=http%3A%2F%2Fimg1.ph.126.net%2FcKSYoOU_Ic5VSP5FAiUfeA%3D%3D%2F6631444898187314326.gif',
-                        storyPlace: '北京',
-                        storyCategory: '美食',
-                        storyTime: '2019-9-3',
-                        storyContent: '站在北京的街头'
-                    },
-                    {
-                        storyId: 6,
-                        img_url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567250239460&di=a68d1445f6d7d81f6ae05a813c243feb&imgtype=0&src=http%3A%2F%2Fimg1.ph.126.net%2FcKSYoOU_Ic5VSP5FAiUfeA%3D%3D%2F6631444898187314326.gif',
-                        storyPlace: '北京',
-                        storyCategory: '美食',
-                        storyTime: '2019-9-3',
-                        storyContent: '站在北京的街头'
-                    },
-                    {
-                        storyId: 7,
-                        img_url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567250239460&di=a68d1445f6d7d81f6ae05a813c243feb&imgtype=0&src=http%3A%2F%2Fimg1.ph.126.net%2FcKSYoOU_Ic5VSP5FAiUfeA%3D%3D%2F6631444898187314326.gif',
-                        storyPlace: '北京',
-                        storyCategory: '美食',
-                        storyTime: '2019-9-3',
-                        storyContent: '站在北京的街头'
-                    },
-                    {
-                        storyId: 8,
-                        img_url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567250239460&di=a68d1445f6d7d81f6ae05a813c243feb&imgtype=0&src=http%3A%2F%2Fimg1.ph.126.net%2FcKSYoOU_Ic5VSP5FAiUfeA%3D%3D%2F6631444898187314326.gif',
-                        storyPlace: '北京',
-                        storyCategory: '美食',
-                        storyTime: '2019-9-3',
-                        storyContent: '站在北京的街头'
-                    },
-                    {
-                        storyId: 9,
-                        img_url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567250239460&di=a68d1445f6d7d81f6ae05a813c243feb&imgtype=0&src=http%3A%2F%2Fimg1.ph.126.net%2FcKSYoOU_Ic5VSP5FAiUfeA%3D%3D%2F6631444898187314326.gif',
-                        storyPlace: '北京',
-                        storyCategory: '美食',
-                        storyTime: '2019-9-3',
-                        storyContent: '站在北京的街头'
-                    },
-
+                        storyContent: '这家才是真正的苏州阳澄湖大闸蟹，感觉之前在巴城那边吃的假的阳澄湖大闸蟹\n' +
+                            '\n' +
+                            '这家的大闸蟹质量很高，而且价格实惠，性价比超级高的，特别赞的，特别支持！并且大闸蟹质量很好，这才是最真的大闸蟹，真心的推荐好吃不贵，太好了！！'
+                    }
                 ]
             }
         },
