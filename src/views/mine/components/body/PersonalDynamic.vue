@@ -21,7 +21,7 @@
                 storyList: [
                     {
                         storyId: 1,
-                        img_url: require('../../images/lbg.jpg'),
+                        img_url: require('../../../../images/lbg.jpg'),
                         storyPlace: '北京',
                         storyCategory: '美食',
                         storyTime: '2019-9-3',
@@ -29,7 +29,7 @@
                     },
                     {
                         storyId: 2,
-                        img_url: require('./../../images/ls.jpg'),
+                        img_url: require('../../../../images/ls.jpg'),
                         storyPlace: '宁波',
                         storyCategory: '民宿',
                         storyTime: '2020-1-3',
@@ -37,7 +37,7 @@
                     },
                     {
                         storyId: 3,
-                        img_url: require("../../images/sb.jpg"),
+                        img_url: require("../../../../images/sb.jpg"),
                         storyPlace: '上海',
                         storyCategory: '美食',
                         storyTime: '2019-9-3',
@@ -46,7 +46,7 @@
                     },
                     {
                         storyId: 4,
-                        img_url: require("../../images/szms.png"),
+                        img_url: require("../../../../images/szms.png"),
                         storyPlace: '苏州',
                         storyCategory: '美食',
                         storyTime: '2019-9-3',
