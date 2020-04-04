@@ -36,7 +36,7 @@
 
 <script>
     import {mapState, mapMutations} from 'vuex';
-
+    import {getScenicspotTicket} from './../../../../service/index'
     export default {
         name: "BuyTicket",
         data(){
@@ -84,6 +84,14 @@
                 this.address = scenicspotData.address;
                 this.image = scenicspotData.img_url;
             },
+
+            async getTicket() {
+                let _this = this;
+                let result = await getScenicspotTicket(this.sId);
+                if (result.status === 200) {
+                    _this.tickets = result.Data;
+                }
+            }
         }
     }
 </script>

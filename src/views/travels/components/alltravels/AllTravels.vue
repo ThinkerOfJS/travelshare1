@@ -3,12 +3,12 @@
         <div class="recommendTravel">
             <p class="title">游记推荐</p>
             <div class="wrapper">
-                <div class="wrapperItem" v-for="(story, index) in recommendStory" :key="index" @click="goDetail(story.storyId)">
-                    <img :src="story.img_url" alt="">
+                <div class="wrapperItem" v-for="(story, index) in hot_travels" :key="index" @click="goDetail(story.tid)">
+                    <img :src="host + story.pics[0]" alt="">
                     <div class="storyInfo">
-                        <p class="storyCategory">{{ story.storyCategory }}</p>
-                        <p class="storyContent">
-                            {{ story.storyContent }}
+                        <p class="storyCategory">{{ type[story.tpid-1] }}</p>
+                        <p class="storyContent" v-html="story.content">
+                            {{ story.content }}
                         </p>
                     </div>
                 </div>
@@ -26,43 +26,19 @@
 
 <script>
     import TravelList from '../travel/TravelList'
+    import {getHotTravels} from './../../../../service/index'
 
     export default {
         name: "AllTravels",
         data(){
             return {
                 // 推荐游记故事
-                recommendStory: [
-                    {
-                        id: 1,
-                        img_url: require('../../../../images/travels_detail1.jpeg'),
-                        storyCategory: '故事',
-                        storyContent: '那是一个带着书香的姑娘，长发婆娑，我与她相遇在梅雨过后的江南小巷。'
-                    },
-                    {
-                        id: 2,
-                        img_url: require('../../../../images/youji2.jpeg'),
-                        storyCategory: '美食',
-                        storyContent: '缙云烧饼是真的好次，外酥里嫩，薄厚恰到好处，葱花的香味能够在嘴里久久不散。'
-                    },
-                    {
-                        id: 3,
-                        img_url: require('../../../../images/youji3.jpg'),
-                        storyCategory: '民宿',
-                        storyContent: '真是让人激动，宁波的清风酒店，独特的室内装潢，热情的人工服务。'
-                    },{
-                        id: 4,
-                        img_url: require('../../../../images/youji4.jpg'),
-                        storyCategory: '故事',
-                        storyContent: '人生处处有惊喜，早上4点多起床，就是为了看一严日出，功夫不负有心人，虽然累了点。'
-                    },{
-                        id: 5,
-                        img_url: require('../../../../images/youji5.jpg'),
-                        storyCategory: '美食',
-                        storyContent: '想吃螃蟹，淡黄色的蟹黄，香气四溢，闻着想吃，吃者流泪啊。'
-                    }
-                ],
+                hot_travels: [],
+                type: ['民宿', '美食', '景点', '艺术', '灵感'],
             }
+        },
+        mounted() {
+            this.getHotTravelsList();
         },
         methods: {
             goDetail(storyId){
@@ -70,7 +46,28 @@
                     name: 'traveldesc',
                     params: { storyId }
                 });
-            }
+            },
+            getHotTravelsList() {
+                let _this = this;
+                getHotTravels().then(res => {
+                    console.log(res);
+                    if (res.status === 200) {
+                        if (res.data === null) {
+                            res.data = []
+                        }
+                        let travels = res.data;
+                        for (let item of travels) {
+                            item.pics = item.pics.split(',');
+                        }
+                        _this.hot_travels = travels
+                    } else {
+                        Toast({
+                            message: '网络错误！'
+                        })
+                    }
+                });
+            },
+
         },
         components: {
             TravelList
@@ -140,8 +137,13 @@
         }
         /*隐藏滚动条*/
         .wrapper::-webkit-scrollbar {display:none}
-        .youlikeTitle{
-            margin-top: 3rem;
+        .youlikeTravel {
+            padding-bottom: 4.353rem;
+
+            .youlikeTitle{
+                margin-top: 3rem;
+            }
         }
+
     }
 </style>

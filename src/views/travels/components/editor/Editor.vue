@@ -29,13 +29,16 @@
 </template>
 
 <script>
+
+
     export default {
         name: "Editor",
         runtimeCompiler: true,
         data() {
             return {
                 content: '请输入您的故事',
-                show: false
+                show: false,
+
             }
         },
         methods: {
@@ -45,7 +48,8 @@
                 this.content = c2;
             },
             publish(){
-                this.show = true;
+                // this.show = true;
+                addTravels()
             }
         },
     }

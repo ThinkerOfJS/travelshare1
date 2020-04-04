@@ -55,7 +55,7 @@
     #swipe{
         width: 100%;
         height: 12rem;
-        /*margin-top: 0.75rem;*/
+        margin-top: 0.75rem;
         box-shadow: 0 3px 9px #999;
 
         img{

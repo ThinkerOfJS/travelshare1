@@ -23,7 +23,7 @@
 
 <script>
     import ScenicspotsList from './../common/ScenicspotsList'
-
+    import {getAttractions} from './../../../../service/index'
     export default {
         name: "Scenicspots",
         data(){
@@ -52,10 +52,12 @@
                     },
                 ],
                 address: '',
+                getAttractions: []
             }
         },
         mounted(){
             this.getScenicspotData();
+            this.getInitData();
         },
         methods: {
             goBack(){
@@ -87,6 +89,13 @@
                         data: scenicspot
                     }
                 });
+            },
+            async getInitData() {
+                let _this = this
+                let result = getAttractions(_this.sid);
+                if (result == 200) {
+                    _this.getAttractions = result.Data;
+                }
             }
 
         },

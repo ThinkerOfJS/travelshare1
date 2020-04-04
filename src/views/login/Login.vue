@@ -15,7 +15,6 @@
                 <h1>欢迎来到旅享</h1>
             </div>
             <div class="fields">
-                <van-cell-group>
                     <van-field
                             class="white"
                             left-icon="contact"
@@ -36,7 +35,6 @@
                             placeholder="请输入密码"
                             required
                     />
-                </van-cell-group>
             </div>
             <div class="links">
                 <router-link class="link white" to="/register">没有账号？</router-link>
@@ -86,18 +84,17 @@
                     _this.notifyMsg('用户名或密码不能为空');
                     return ;
                 }
-                // _this.$router.push({
-                //     name: 'home'
-                // });
+                //
                 let result = await loginPwd(_this.username, _this.password);
-                // _this.show = true;
-                console.log('响应结果' + result.data.msg);
                 if (result.status === 200) {
-                    if (!result.data.code) {
-                        let userInfo = await getUserInfo(_this.username);
-                        console.log('用户信息',userInfo);
-                        _this.SAVE_USER(userInfo);
-
+                    if (result.data.code == 0) {
+                        let result = await getUserInfo(_this.username);
+                        if (result.status == 200) {
+                            // console.log('用户信息',result.data);
+                            let userInfo = result.data;
+                            userInfo.avatarsrc = userInfo.avatarsrc.split(',')[0];
+                            _this.SAVE_USER(userInfo);
+                        }
                         _this.show = false;
                         _this.$router.push({
                             name: 'home'

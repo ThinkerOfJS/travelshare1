@@ -1,14 +1,14 @@
 <template>
     <div id="travellist">
-        <div class="travel-item" v-for="(story, index) in storyList" :key="index" @click="goDetail(story.storyId)" >
-            <img :src="story.img_url" v-lazy="story.img_url" alt="" >
+        <div class="travel-item" v-for="(story, index) in storyList" :key="index" @click="goDetail(story.tid)" >
+            <img :src="host + story.pics[0]" v-lazy="host + story.pics[0]" alt="" >
             <div class="travel-content">
                 <p class="title">
-                    <span class="place">{{ story.storyPlace }}</span>
-                    <span class="category">{{ story.storyCategory }}</span>
-                    <span class="time">2019-9-3</span>
+                    <span class="place">{{ story.place }}</span>
+                    <span class="category">{{ type[story.tpid-1] }}</span>
+                    <span class="time">{{story.date}}</span>
                 </p>
-                <p class="content">{{ story.storyContent }}</p>
+                <p class="content" v-html="story.content">{{ story.content }}</p>
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
         name: "TravelList",
         data(){
             return {
-
+                type: ['民宿', '美食', '景点', '艺术', '灵感'],
             }
         },
         methods: {
@@ -39,7 +39,7 @@
 <style lang="scss" scoped>
     #travellist{
         width: 100%;
-        margin-bottom: 3rem;
+        margin-bottom: 0.588rem;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -59,6 +59,8 @@
             .travel-content{
                 .title{
                     font-size: 0.7rem;
+                    display: flex;
+                    align-items: center;
                     .place{
                         font-weight: bold;
                     }
@@ -69,7 +71,7 @@
                     .time{
                         display: inline-block;
                         font-style: italic;
-                        margin-left: 3rem;
+                        margin-left: 1.5rem;
                     }
                 }
                 .content{

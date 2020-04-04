@@ -2,38 +2,38 @@
     <div id="body">
         <ul>
             <hr>
-            <li @click="goMyOrder(user.user_id)">
+            <li @click="goMyOrder(user.uid)">
                 <span class="title">我的订单</span>
             </li>
             <hr>
-            <li @click="goPersonalDynamic(user.user_id)">
+            <li @click="goPersonalDynamic(user.uid)">
                 <span class="title">个人动态</span>
                 <van-icon color="#999" name="chat-o" size="1.3rem"/>
             </li>
             <hr>
-            <li @click="goCollection(user.user_id)">
+            <li @click="goCollection(user.uid)">
                 <span class="title">收藏</span>
                 <van-icon color="#999" name="like-o" size="1.3rem" />
             </li>
             <hr>
             <li>
                 <span class="title">昵称:</span>
-                <span class="content">{{ user.user_name }}</span>
+                <span class="content">{{ user.nickname }}</span>
             </li>
             <hr>
             <li>
                 <span class="title">个性签名:</span>
-                <span class="content">{{ user.user_signature }}</span>
+                <span class="content">{{ user.introduction }}</span>
             </li>
             <hr>
             <li>
                 <span class="title">手机号:</span>
-                <span class="content">{{ user.user_phone }}</span>
+                <span class="content">{{ user.phone }}</span>
             </li>
             <hr>
             <li>
                 <span class="title">邮箱地址:</span>
-                <span class="content">{{ user.user_email }}</span>
+                <span class="content">{{ user.email }}</span>
             </li>
             <hr>
         </ul>

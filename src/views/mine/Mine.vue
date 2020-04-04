@@ -3,11 +3,11 @@
         <div class="top">
             <p class="title">我的</p>
         </div>
-        <Header :user="user" />
-        <Body :user="user" />
+        <Header :user="userInfo" />
+        <Body :user="userInfo" />
         <div class="btns">
             <van-button
-                @click="showChange(user)"
+                @click="showChange()"
                 class="btn"
                 round
                 plain
@@ -38,15 +38,19 @@
         >
             <div class="change-box">
                 <van-cell-group>
+                    <!-- 添加头像 -->
+                    <div class="addPic">
+                        <van-uploader v-model="fileList" multiple/>
+                    </div>
                     <van-field
-                            v-model="name"
+                            v-model="nickname"
                             clearable
                             label="昵称:"
                             placeholder="请输入昵称"
                     />
 
                     <van-field
-                            v-model="signature"
+                            v-model="introduction"
                             type="textarea"
                             label="个性签名:"
                             placeholder="请输入个性签名"
@@ -54,7 +58,7 @@
                             autosize
                     />
                     <van-field
-                            v-model="tel"
+                            v-model="phone"
                             label="手机号:"
                             type="tel"
                             placeholder="请输入手机号"
@@ -84,40 +88,41 @@
 </template>
 
 <script>
-    import Header from './components/Header'
-    import Body from './components/body/Body'
+    import Header from './components/Header';
+    import Body from './components/body/Body';
+    import {mapState, mapMutations} from 'vuex';
+    import {Toast, CellGroup} from 'vant';
+    import {getUserInfo} from './../../service/index'
+
     export default {
         name: "Mine",
         data(){
             return {
                 show: false,
-                name: '',
-                signature: '',
-                tel: '',
+                nickname: '',
+                introduction: '',
+                phone: '',
                 email: '',
-                user: {
-                    user_id: 1,
-                    user_name: '空城旧梦',
-                    user_signature: '分享旅行中的点滴，发现每一个让人回味无穷的故事，期待每一个能够遇见的人,期待每一个能够遇见的人',
-                    user_img_url: 'https://img.yzcdn.cn/vant/cat.jpeg',
-                    user_phone: '12345678910',
-                    user_email: '123456789@qq.com'
-                },
+                fileList: []
             }
         },
+        computed: {
+            ...mapState(["userInfo"]),
+        },
         methods: {
+            ...mapMutations(["SAVE_USER"]),
             goChangeDocument(userId){
                 this.$router.push({
                     name: 'changedocument',
                     params: { userId }
                 })
             },
-            showChange(user){
+            showChange(){
                 this.show = true;
-                this.tel = user.user_phone;
-                this.email = user.user_email;
-                this.name = user.user_name;
-                this.signature = user.user_signature;
+                this.phone = this.userInfo.phone;
+                this.email = this.userInfo.email;
+                this.nickname = this.userInfo.nickname;
+                this.introduction = this.userInfo.introduction;
             },
             goLogin(){
                 this.$router.push({
@@ -125,7 +130,49 @@
                 });
             },
             change(){
-                alert('修改成功');
+                let _that = this;
+                let fileLists = _that.fileList;
+                // console.log(fileLists);
+                _that.show = false;
+                let param = new FormData();
+                for (let i = 0; i < fileLists.length; i++) {
+                    let file = fileLists[i].file;
+                    param.append('file', file);
+                }
+                param.append('nickname', this.nickname);
+                param.append('introduction', this.introduction);
+                param.append('phone', this.phone);
+                param.append('email', this.email);
+                param.append('uid', this.userInfo.uid);
+                let config = {
+                    headers: {'Content-Type': 'multipart/form-data'}
+                }; //添加请求头
+                _that.$ajax.post('/api/user/change', param, config)
+                    .then(res => {
+
+                        if (res.status == 200) {
+                            Toast({
+                                message: '修改成功！'
+                            });
+                            _that.loadUser();
+                        } else {
+                            Toast({
+                                message: '修改失败'
+                            });
+                            return
+                        }
+                        // console.log(res);
+                    });
+            },
+            loadUser() {
+                getUserInfo(this.userInfo.username).then(res => {
+                    console.log(res);
+                    if (res.status === 200) {
+                        let userInfo = res.data;
+                        userInfo.avatarsrc = userInfo.avatarsrc.split(',')[0];
+                        this.SAVE_USER(userInfo);
+                    }
+                })
             }
         },
         components: {
@@ -172,6 +219,10 @@
                 margin-left: 50%;
                 left: -4rem;
                 width: 8rem;
+            }
+            .addPic {
+                margin-top: 1rem;
+                padding: 0.5rem;
             }
         }
     }

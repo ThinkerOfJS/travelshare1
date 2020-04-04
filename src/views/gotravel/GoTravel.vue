@@ -45,13 +45,14 @@
         <div class="hot-recommend">
             <p class="title">热门推荐</p>
             <ScenicspotList :scenicspotList="scenicspotList" :showTime="showTime" />
-            <van-button class="btn" type="info" color="#87CEEB" round>加载更多</van-button>
+            <van-button class="btn" @click="loadMoreScenicspot" type="info" color="#87CEEB" round>加载更多</van-button>
         </div>
     </div>
 </template>
 
 <script>
     import ScenicspotList from './components/common/ScenicspotList'
+    import {getHotScenicspot} from './../../service/index'
 
     export default {
         name: "GoTravel",
@@ -71,30 +72,22 @@
                     {
                         id: '2',
                         scenicspot_img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567583112339&di=85d6913157e38cfdf6b13a3d6d261440&imgtype=0&src=http%3A%2F%2Fimg3.tuniucdn.com%2Fimages%2F2011-09-28%2FG%2FG75pd110Z86qqT20.jpg',
-                        scenicspot_name: '北京天安门',
-                        scenicspot_introduce: '   坐落在中华人民共和国首都北京市的中心、故宫的南端，与天安门广场以及人民英雄纪念碑、毛主席纪念堂、人民大会堂、中国国家博物馆隔长安街相望，占地面积4800平方米',
+                        scenicspot_name: '阳澄湖',
+                        scenicspot_introduce: '阳澄湖是太湖平原上第三大淡水湖，湖中两条天然土埂贯穿南北．将湖面分为东、中、西三湖，其中东湖最大．三湖之间有众多港汊相通．是阳澄地区防洪、排涝、引水、灌溉的调蓄湖泊．同时也是苏州市区和昆山市城区主要饮用水水源地。',
                     },
                     {
                         id: '3',
-                        scenicspot_img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567583112339&di=85d6913157e38cfdf6b13a3d6d261440&imgtype=0&src=http%3A%2F%2Fimg3.tuniucdn.com%2Fimages%2F2011-09-28%2FG%2FG75pd110Z86qqT20.jpg',
-                        scenicspot_name: '北京天安门',
-                        scenicspot_introduce: '   坐落在中华人民共和国首都北京市的中心、故宫的南端，与天安门广场以及人民英雄纪念碑、毛主席纪念堂、人民大会堂、中国国家博物馆隔长安街相望，占地面积4800平方米',
-                    },
-                    {
-                        id: '4',
-                        scenicspot_img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567583112339&di=85d6913157e38cfdf6b13a3d6d261440&imgtype=0&src=http%3A%2F%2Fimg3.tuniucdn.com%2Fimages%2F2011-09-28%2FG%2FG75pd110Z86qqT20.jpg',
-                        scenicspot_name: '北京天安门',
-                        scenicspot_introduce: '   坐落在中华人民共和国首都北京市的中心、故宫的南端，与天安门广场以及人民英雄纪念碑、毛主席纪念堂、人民大会堂、中国国家博物馆隔长安街相望，占地面积4800平方米',
-                    },
-                    {
-                        id: '5',
-                        scenicspot_img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567583112339&di=85d6913157e38cfdf6b13a3d6d261440&imgtype=0&src=http%3A%2F%2Fimg3.tuniucdn.com%2Fimages%2F2011-09-28%2FG%2FG75pd110Z86qqT20.jpg',
-                        scenicspot_name: '北京天安门',
-                        scenicspot_introduce: '   坐落在中华人民共和国首都北京市的中心、故宫的南端，与天安门广场以及人民英雄纪念碑、毛主席纪念堂、人民大会堂、中国国家博物馆隔长安街相望，占地面积4800平方米',
+                        scenicspot_img: require('../../images/youji7.jpeg'),
+                        scenicspot_name: '西塘古镇',
+                        scenicspot_introduce: '西塘古镇属浙江省嘉兴市嘉善县，地处江浙沪三省市交界处，地理位置优越。交通便捷，东距上海90公里，西距杭州110公里，北距苏州85公里。',
                     }
                 ],
-                showTime: false
+                showTime: false,
+                tid: 0
             }
+        },
+        mounted(){
+            this.loadScecispot(false);
         },
         methods: {
             onSearch(){
@@ -110,6 +103,24 @@
                 this.$router.push({
                     name: 'dayplay',
                 });
+            },
+            loadScecispot(flag) {
+                let top = 0;
+                if (flag) {
+                    top = this.scenicspotList.length;
+                }
+                let result = getHotScenicspot(top, 5);
+                if(result.status == 200) {
+                    if (flag) {
+                        this.scenicspotList = this.scenicspotList.concat(result.data)
+                    } else {
+                        this.scenicspotList = result.data
+                    }
+                }
+
+            },
+            loadMoreScenicspot() {
+                this.loadScecispot(true)
             }
         },
         components: {

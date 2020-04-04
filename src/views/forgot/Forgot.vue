@@ -15,7 +15,6 @@
                 <h1>忘记密码</h1>
             </div>
             <div class="fields">
-                <van-cell-group>
                     <van-field
                         class="white"
                         left-icon="contact"
@@ -36,7 +35,6 @@
                         placeholder="请输入新密码"
                         required
                     />
-                </van-cell-group>
             </div>
 
             <div class="btns">

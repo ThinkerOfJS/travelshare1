@@ -49,7 +49,9 @@
             }
         },
         methods: {
+            async getScenicspotDetail() {
 
+            }
         },
         // props: {
         //     scenicspotList: Array,

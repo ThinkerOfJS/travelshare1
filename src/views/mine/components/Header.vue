@@ -1,8 +1,8 @@
 <template>
     <div id="header">
         <div class="left">
-            <span class="username">{{ user.user_name }}</span>
-            <span class="signature">{{ user.user_signature }}</span>
+            <span class="username">{{ user.nickname }}</span>
+            <span class="signature">{{ user.introduction }}</span>
         </div>
         <van-image
                 class="img"
@@ -10,7 +10,7 @@
                 height="5rem"
                 round
                 fit="cover"
-                :src="user.user_img_url"
+                :src="host + user.avatarsrc"
         />
     </div>
 </template>

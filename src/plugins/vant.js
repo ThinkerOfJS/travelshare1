@@ -89,3 +89,8 @@ Vue.use(Overlay);
 // 加载中
 import { Loading } from 'vant';
 Vue.use(Loading);
+
+import { Cell, CellGroup } from 'vant';
+
+Vue.use(Cell);
+Vue.use(CellGroup);

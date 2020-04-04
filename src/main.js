@@ -23,6 +23,10 @@ initRichText();
 
 Vue.config.productionTip = false;
 
+import axios from 'axios'
+Vue.prototype.$ajax = axios;
+Vue.prototype.host = '/api';
+
 // 引入全局尺寸 rem
 import './config/rem'
 

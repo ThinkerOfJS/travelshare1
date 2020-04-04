@@ -40,7 +40,7 @@
             </div>
         </div>
         <AddContact @getcontact="getContact" />
-        <span>联系人：{{ contact.name + contact.tel }}</span>
+<!--        <span>联系人：{{ contact.name + contact.tel }}</span>-->
 
         <van-submit-bar
                 :price="allPrice"
@@ -63,10 +63,13 @@
     import { mapState, mapMutations } from 'vuex'
     import { Dialog, Toast } from 'vant';
     import AddContact from './AddContact'
+    import {addOrder} from './../../../../service/index'
+
     export default {
         name: "Order",
         data(){
             return {
+
                 address: '',
                 contact: {
                     name: '',
@@ -155,7 +158,8 @@
                 Object.assign(this.contact, contact);
             },
             onSubmit(){
-
+                let _this = this;
+                addOrder(_this.tickets.tid,_this.tickets.tname,_this.contact.name,_this.contact.tel,_this.allPrice);
             }
         },
         components: {

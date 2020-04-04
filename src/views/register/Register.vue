@@ -14,7 +14,6 @@
                 <h1>加入旅享社区</h1>
             </div>
             <div class="fields">
-                <van-cell-group>
                     <van-field
                             class="white"
                             left-icon="contact"
@@ -35,7 +34,6 @@
                             placeholder="请输入密码"
                             required
                     />
-                </van-cell-group>
             </div>
 
             <div class="btns">

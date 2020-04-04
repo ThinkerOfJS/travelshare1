@@ -13,6 +13,7 @@ const GoTravel = () => import('./../views/gotravel/GoTravel.vue');
 const Mine = () => import('./../views/mine/Mine.vue');
 const TravelDesc = () => import('./../components/TravelDesc.vue');
 const WriteTravel = () => import('./../views/travels/components/WriteTravel.vue');
+const Searchs = () => import('./../views/travels/components/Search.vue');
 const Scenicspot = () => import('./../views/gotravel/components/scenicspot/Scenicspot.vue');
 const Scenicspots = () => import('./../views/gotravel/components/scenicspot/Scenicspots.vue');
 const BuyTicket = () => import('./../views/gotravel/components/scenicspot/BuyTicket.vue');
@@ -23,6 +24,7 @@ const Collection = () => import('./../views/mine/components/body/Collection.vue'
 const PersonalDynamic = () => import('./../views/mine/components/body/PersonalDynamic.vue');
 const ChangeDocument = () => import('./../views/mine/components/ChangeDocument.vue');
 const MyOrder = () => import('./../views/mine/components/body/MyOrder.vue');
+
 
 Vue.use(Router);
 
@@ -63,6 +65,11 @@ export default new Router({
                     path: 'travels/writetravel',
                     name: 'writetravel',
                     component: WriteTravel
+                },
+                {
+                    path: 'travels/search',
+                    name: 'search',
+                    component: Searchs
                 },
                 // { path: 'travels/traveldesc/:storyId', name: 'traveldesc', component: TravelDesc},
                 // 去旅行页面路由

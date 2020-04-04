@@ -6,60 +6,61 @@
             <van-icon name="ellipsis" size="1.25rem" color="#f5f5f5"/>
         </div>
         <div class="body">
-            <span class="title">您可以随时查看您发表过的旅行故事</span>
+            <span class="title">分享生活中的一点一滴</span>
             <TravelList :storyList="storyList"/>
         </div>
+        <van-button class="btn1" type="info" color="#87CEEB" @click="loadMore" round>加载更多</van-button>
     </div>
 </template>
 
 <script>
-    import TravelList from './../../../travels/components/travel/TravelList'
+    import TravelList from './../../../travels/components/travel/TravelList';
+    import {getUserTravels} from './../../../../service/index';
+    import {Toast} from 'vant'
+
     export default {
         name: "PersonalDynamic",
         data(){
             return {
-                storyList: [
-                    {
-                        storyId: 1,
-                        img_url: require('../../../../images/lbg.jpg'),
-                        storyPlace: '北京',
-                        storyCategory: '美食',
-                        storyTime: '2019-9-3',
-                        storyContent: '站在北京的街头，仿佛闻到的老老冰棍的味道。香香甜甜，夏天里能吃上一支老冰棍，人都会凉爽一大截'
-                    },
-                    {
-                        storyId: 2,
-                        img_url: require('../../../../images/ls.jpg'),
-                        storyPlace: '宁波',
-                        storyCategory: '民宿',
-                        storyTime: '2020-1-3',
-                        storyContent: '宁波的一些旅馆都还是很不错的，物美价廉，特别是清风旅社，里面的装潢精美，一些人工服务也比较到位，爱了爱了。'
-                    },
-                    {
-                        storyId: 3,
-                        img_url: require("../../../../images/sb.jpg"),
-                        storyPlace: '上海',
-                        storyCategory: '美食',
-                        storyTime: '2019-9-3',
-                        storyContent: '上海的鲜肉月饼，既然来到上海旅游，肯定要尝试下当地的鲜肉月饼，这种月饼里面放了很多新鲜的猪肉，制作出来的月饼味道特别棒，' +
-                            '外皮酥嫩，还有浓郁的香味，吃过一次之后就会知道是名不虚传。'
-                    },
-                    {
-                        storyId: 4,
-                        img_url: require("../../../../images/szms.png"),
-                        storyPlace: '苏州',
-                        storyCategory: '美食',
-                        storyTime: '2019-9-3',
-                        storyContent: '这家才是真正的苏州阳澄湖大闸蟹，感觉之前在巴城那边吃的假的阳澄湖大闸蟹\n' +
-                            '\n' +
-                            '这家的大闸蟹质量很高，而且价格实惠，性价比超级高的，特别赞的，特别支持！并且大闸蟹质量很好，这才是最真的大闸蟹，真心的推荐好吃不贵，太好了！！'
-                    }
-                ]
+                uid: 0,
+                storyList: []
             }
+        },
+        mounted(){
+            this.uid = this.$route.params.userId;
+            this.getTravelsList(false);
         },
         methods: {
             goBack(){
                 this.$router.go(-1);
+            },
+            getTravelsList(flag) {
+                let start = 0;
+                if (flag) {
+                    start = this.storyList.length;
+                }
+                getUserTravels(this.uid, start, 4).then(res => {
+                    if (res.status === 200) {
+                        if (res.data === null) {
+                            res.data = []
+                        }
+                        let list = res.data;
+                        for(let item of list) {
+                            item.date = item.date.slice(0,10);
+                            item.pics = item.pics.split(',');
+                        }
+                        if (flag) {
+                            this.storyList = this.storyList.concat(list)
+                        } else {
+                            this.storyList = list
+                        }
+                    } else {
+                        Toast.fail('网络错误！')
+                    }
+                })
+            },
+            loadMore() {
+                this.getTravelsList(true);
             }
         },
         components: {
@@ -93,6 +94,13 @@
                 font-size: 0.9rem;
                 color: #999;
             }
+        }
+        .btn1{
+            width: 15rem;
+            left: 50%;
+            margin-left: -7.5rem;
+            box-shadow: 0 0 9px #999;
+            margin-bottom: 5.882rem;
         }
     }
 </style>
