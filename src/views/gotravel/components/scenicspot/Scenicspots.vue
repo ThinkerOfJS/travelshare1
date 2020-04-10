@@ -7,23 +7,29 @@
         </div>
         <!-- 景点图片区域 -->
         <div class="img">
-            <img :src="image" preview :preview-text="address" :alt="address" >
+            <img :src="scenicspot.pics" preview :preview-text="scenicspot.title" :alt="scenicspot.title" >
         </div>
         <hr>
         <div class="body">
             <div class="header">
-                <span class="address">{{address}}</span>
-                <van-button class="buy-btn" size="small" type="info" color="#FF9900" @click="buyTicket(sId, address, image)">门票预定</van-button>
+                <div class="top-box">
+                    <span class="address">{{scenicspot.title}}</span>
+                    <van-button class="buy-btn" size="small" type="info" color="#FF9900" @click="buyTicket(scenicspot.sid, scenicspot.title, scenicspot.pics)">门票预定</van-button>
+                </div>
+                <div class="bottom">
+                    <p v-html="scenicspot.address">{{scenicspot.address}}</p>
+                </div>
+
             </div>
 
-            <ScenicspotsList :scenicspotList="scenicspotList" />
+            <ScenicspotsList :scenicspotList="attractions" />
         </div>
     </div>
 </template>
 
 <script>
     import ScenicspotsList from './../common/ScenicspotsList'
-    import {getAttractions} from './../../../../service/index'
+    import {getAttractions, getScenicspotDetail} from './../../../../service/index'
     export default {
         name: "Scenicspots",
         data(){
@@ -31,33 +37,15 @@
                 show: false,
                 sId: '',
                 image: '',
-                scenicspotList: [
-                    {
-                        id: '1',
-                        scenicspot_img: require('../../../../images/bj_home.jpeg'),
-                        scenicspot_name: '北京天安门',
-                        scenicspot_introduce: '  北京天安门 ',
-                    },
-                    {
-                        id: '2',
-                        scenicspot_img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567583112339&di=85d6913157e38cfdf6b13a3d6d261440&imgtype=0&src=http%3A%2F%2Fimg3.tuniucdn.com%2Fimages%2F2011-09-28%2FG%2FG75pd110Z86qqT20.jpg',
-                        scenicspot_name: '北京天安门',
-                        scenicspot_introduce: '   坐落在中华人民共和国首都北京市的中心、故宫的南端，与天安门广场以及人民英雄纪念碑、毛主席纪念堂、人民大会堂、中国国家博物馆隔长安街相望，占地面积4800平方米',
-                    },
-                    {
-                        id: '3',
-                        scenicspot_img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567583112339&di=85d6913157e38cfdf6b13a3d6d261440&imgtype=0&src=http%3A%2F%2Fimg3.tuniucdn.com%2Fimages%2F2011-09-28%2FG%2FG75pd110Z86qqT20.jpg',
-                        scenicspot_name: '北京天安门',
-                        scenicspot_introduce: '   坐落在中华人民共和国首都北京市的中心、故宫的南端，与天安门广场以及人民英雄纪念碑、毛主席纪念堂、人民大会堂、中国国家博物馆隔长安街相望，占地面积4800平方米',
-                    },
-                ],
                 address: '',
-                getAttractions: []
+                scenicspot: {},
+                attractions: []
             }
         },
         mounted(){
             this.getScenicspotData();
-            this.getInitData();
+            this.loadScenicspot();
+            this.loadAttractios();
         },
         methods: {
             goBack(){
@@ -74,6 +62,7 @@
                 this.sId = scenicspotData.sId;
                 this.address = scenicspotData.address;
                 this.image = scenicspotData.img_url;
+
             },
             buyTicket(sId, address, img_url){
 
@@ -90,12 +79,53 @@
                     }
                 });
             },
-            async getInitData() {
-                let _this = this
-                let result = getAttractions(_this.sid);
-                if (result == 200) {
-                    _this.getAttractions = result.Data;
-                }
+            loadScenicspot() {
+                getScenicspotDetail(this.sId).then(res => {
+
+                    if (res.status === 200) {
+                        let scenicspot = res.data;
+                        let images = scenicspot.imgurl.split(',');
+                        for (let i in images) {
+                            if (images[i] === '') {
+                                images.splice(i, 1);
+                            } else {
+                                images[i] = this.host + images[i];
+                            }
+                        }
+                        scenicspot.images = images;
+                        scenicspot.pics = images[0];
+                        this.scenicspot = scenicspot;
+                        // console.log('景区详情',this.scenicspot);
+                    }
+                })
+            },
+            loadAttractios() {
+                let _this = this;
+                getAttractions(_this.sId).then(res => {
+                    // console.log('景点数据',res);
+                    if (res.status === 200) {
+                        if (res.data === null) {
+                            res.data = []
+                        }
+
+                        let attractions = res.data;
+                        for (let item of attractions) {
+                            let images = item.imgurl.split(',');
+                            for (let i in images) {
+                                if(images[i] === '') {
+                                    images.splice(i, 1);
+                                } else {
+                                    images[i] = this.host + images[i];
+                                }
+                            }
+                            item.images = images;
+                            item.pics = images[0];
+                        }
+
+                        this.attractions = attractions;
+                    }
+                });
+
             }
 
         },
@@ -140,15 +170,24 @@
             padding: 0 0.4rem;
             .header{
                 display: flex;
-                justify-content: space-between;
-                .address{
-                    max-width: 15rem;
-                    font-size: 0.9rem;
-                    font-weight: bold;
+                flex-direction: column;
+                .top-box {
+                    display: flex;
+                    justify-content: space-between;
+                    .address{
+                        max-width: 15rem;
+                        font-size: 0.9rem;
+                        font-weight: bold;
+                    }
+                    .buy-btn{
+                        width: 5rem;
+                        box-shadow: 0 0 9px #999;
+                    }
                 }
-                .buy-btn{
-                    width: 5rem;
-                    box-shadow: 0 0 9px #999;
+                .bottom {
+                    font-size: 0.8rem;
+                    margin-top: 0.3rem;
+                    color: #999999;
                 }
             }
         }

@@ -6,3 +6,4 @@ export const SELECTED_All_TICKETS = 'SELECTED_All_TICKETS'; // 全选和取消�
 export const CLEAR_ORDER = 'CLEAR_ORDER'; // 清空下单页面
 export const SAVE_USER = 'SAVE_USER'; // 保存用户信息
 export const GET_USER = 'GET_USER'; // 获取用户信息
+export const CLEAR_USER = 'CLEAR_USER'; // 清除用户信息

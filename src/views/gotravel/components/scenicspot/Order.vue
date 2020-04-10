@@ -35,7 +35,7 @@
                             @minus="reduceTicket(ticket.num ,ticket.ticketName)"
                         />
                     </div>
-                    <span style="color: red;margin-left: 2.3rem;">￥ {{ ticket.ticketPrice }}</span>
+                    <span style="color: red;margin-left: 2.3rem; margin-top: 0.3rem;">￥ {{ ticket.ticketPrice }}</span>
                 </div>
             </div>
         </div>
@@ -69,7 +69,6 @@
         name: "Order",
         data(){
             return {
-
                 address: '',
                 contact: {
                     name: '',
@@ -81,7 +80,7 @@
             this.initOrder();
         },
         computed: {
-            ...mapState(["tickets"]),
+            ...mapState(["tickets", "userInfo"]),
             allPrice(){
                 let totalPrice = 0;
                 this.tickets.forEach( ticket => {
@@ -89,6 +88,7 @@
                         totalPrice += ticket.num * parseInt(ticket.ticketPrice) * 100;
                     }
                 } );
+
                 return totalPrice;
             },
             isSellected: {
@@ -125,10 +125,9 @@
                 })
             },
             reduceTicket(num, ticketName){
-                if (num > 1) {
+                if (num > 3) {
                     this.REDUCE_TICKET({ ticketName });
-                }
-                else if (num === 1) {
+                } else {
                     Dialog.confirm({
                         title: '温馨提示',
                         message: '确定取消预定门票吗?'
@@ -158,8 +157,50 @@
                 Object.assign(this.contact, contact);
             },
             onSubmit(){
-                let _this = this;
-                addOrder(_this.tickets.tid,_this.tickets.tname,_this.contact.name,_this.contact.tel,_this.allPrice);
+                let that = this;
+                let orderDetList = [];
+                let tickets = this.tickets;
+                for (let i in tickets) {
+                    orderDetList[i] = {
+                        tname: tickets[i].ticketName,
+                        tnumber: tickets[i].num
+                    }
+                }
+                if (that.contact.name === '' || that.contact.tel === '') {
+                    Toast({
+                        message: '联系人信息不能为空！'
+                    });
+                    return;
+                }
+                let coname = that.contact.name;
+                let cphone = that.contact.tel;
+                let oprice = parseFloat(that.allPrice/100);
+                let sname = that.address;
+                // console.log('tickets', this.tickets);
+                // console.log('contact', this.contact);
+                // console.log('address', this.address);
+                // console.log('allpice',  parseFloat(this.allPrice/100));
+                // console.log('uid', this.userInfo.uid);
+                addOrder(oprice, coname, cphone, that.userInfo.uid, sname, orderDetList).then(res => {
+                    console.log('下单结果',res);
+                    if (res.status === 200) {
+                        if (res.data.code === 1) {
+                            Toast({
+                                message: res.data.msg
+                            });
+                            return
+                        } else {
+                            Toast({
+                                message: res.data.msg
+                            });
+                            that.CLEAR_ORDER();
+                            that.$router.push({
+                                name: 'myorder',
+                                params: { userId: that.userInfo.uid }
+                            })
+                        }
+                    }
+                });
             }
         },
         components: {

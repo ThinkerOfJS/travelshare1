@@ -3,11 +3,10 @@
         <div class="top">
             <van-icon class="back" name="arrow-left" size="1.25rem" @click="goBack" color="#f5f5f5"/>
             <van-search
-                    class="searchs"
+                    class="search"
                     v-model="value"
-                    placeholder="请输入游记标题"
+                    placeholder="请输入景区名称关键词"
                     show-action
-                    :label="place"
                     shape="round"
                     background="transparent"
                     @search="onSearch"
@@ -16,16 +15,16 @@
             </van-search>
         </div>
         <div class="body">
-            <span class="title">所有的故事，都相遇在这里</span>
-            <TravelList :storyList="storyList"/>
+            <span class="title">最佳的游玩地点，在这里</span>
+            <ScenicspotList :scenicspotList="scenicspotList" />
 
         </div>
     </div>
 </template>
 
 <script>
-    import TravelList from './travel/TravelList'
-    import {searchTravels} from './../../../service/index';
+    import ScenicspotList from './common/ScenicspotList'
+    import {searchScenicspot} from './../../../service/index';
     import {Toast} from 'vant'
 
     export default {
@@ -33,7 +32,7 @@
         data() {
             return {
                 value: '',
-                storyList: []
+                scenicspotList: []
             }
         },
         methods: {
@@ -41,24 +40,32 @@
                 this.$router.go(-1);
             },
             onSearch() {
-                this.loadTravels(this.value);
+                this.loadScenicspot(this.value);
             },
-            loadTravels(title) {
-                searchTravels(title).then(res => {
+            loadScenicspot(title) {
+                searchScenicspot(title).then(res => {
                     console.log('查找', res);
                     if (res.status === 200) {
                         if (res.data.length === 0) {
                             res.data = [];
                             Toast({
-                                message: '暂无游记'
+                                message: '暂无景区'
                             })
                         }
                         let list = res.data;
                         for(let item of list) {
-                            item.date = item.date.slice(0,10);
-                            item.pics = item.pics.split(',');
+                            let images = item.imgurl.split(',');
+                            for(let i in images) {
+                                if (images[i] === '') {
+                                    images.splice(i, 1);
+                                } else {
+                                    images[i] = this.host + images[i]
+                                }
+                            }
+                            item.pics = images[0];
+                            item.images = images;
                         }
-                        this.storyList = list;
+                        this.scenicspotList = list;
 
                     } else {
                         Toast.fail('网络错误！')
@@ -67,7 +74,7 @@
             }
         },
         components: {
-            TravelList
+            ScenicspotList
         }
     }
 </script>
@@ -93,7 +100,7 @@
                 line-height: 2.5rem;
                 font-weight: bold;
             }
-            .searchs{
+            .search{
                 padding: 0;
                 width: 27.412rem;
                 p{

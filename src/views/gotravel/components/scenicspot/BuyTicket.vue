@@ -13,21 +13,27 @@
         <hr>
         <!-- 门票推荐区域 -->
         <div class="body">
-            <span class="title">门票推荐：</span>
-            <van-icon size="1.5rem" color="red" name="hot-sale-o" />
-            <span class="ticket">{{ tickets[0].name }}</span>
-            <div class="tags" @click="goBuy(address, tickets[0].name, tickets[0].price)">
-                <van-tag class="size" color="#FF9900" plain>￥{{ tickets[0].price }}</van-tag>
+            <div class="body-top">
+                <span class="title">门票推荐：</span>
+                <van-icon size="1.5rem" color="red" name="hot-sale-o" />
+                <span class="ticket">{{ tickets[0].tname }}</span>
+            </div>
+
+            <div class="tags" @click="goBuy(address, tickets[0].tname, tickets[0].tprice)">
+                <van-tag class="size" color="#FF9900" plain>￥{{ tickets[0].tprice }}</van-tag>
                 <van-tag class="size" color="#FF9900">预定</van-tag>
             </div>
         </div>
         <hr>
         <!-- 门票列表区域 -->
         <div class="ticket-list" v-for="(item, index) in tickets" :key="index">
-            <van-icon class="icon" name="coupon-o" color="red" />
-            <span class="ticket">{{ item.name }}</span>
-            <div class="tags" @click="goBuy(address, item.name, item.price)">
-                <van-tag class="size" color="#FF9900" plain>￥{{ item.price }}</van-tag>
+            <div class="ticket-left">
+                <van-icon class="icon" name="coupon-o" color="red" />
+                <span class="ticket">{{ item.tname }}</span>
+            </div>
+
+            <div class="tags" @click="goBuy(address, item.tname, item.tprice)">
+                <van-tag class="size" color="#FF9900" plain>￥{{ item.tprice }}</van-tag>
                 <van-tag class="size" color="#FF9900">预定</van-tag>
             </div>
         </div>
@@ -44,22 +50,13 @@
                 sId: '',
                 image: '',
                 address: '',
-                tickets : [
-                    {
-                        name : "毛主席纪念堂成人票",
-                        price_mk : "190",
-                        price : "180"
-                    },
-                    {
-                        name : "国家博物馆成人票",
-                        price_mk : "200",
-                        price : "190"
-                    }
-                ],
+                tickets : [],
+                hotTickets: {},
             }
         },
         mounted(){
             this.getScenicspotData();
+            this.getTicket();
         },
         methods: {
             ...mapMutations(["ADD_TICKET"]),
@@ -83,14 +80,22 @@
                 this.sId = scenicspotData.sId;
                 this.address = scenicspotData.address;
                 this.image = scenicspotData.img_url;
+                console.log('sid', this.sId);
             },
 
-            async getTicket() {
+            getTicket() {
                 let _this = this;
-                let result = await getScenicspotTicket(this.sId);
-                if (result.status === 200) {
-                    _this.tickets = result.Data;
-                }
+                getScenicspotTicket(_this.sId).then(res => {
+                    console.log('景区门票', res);
+                    if (res.status === 200) {
+                        if (res.data === null) {
+                            res.data = []
+                        }
+
+                        _this.tickets = res.data;
+                    }
+                });
+
             }
         }
     }
@@ -128,38 +133,52 @@
             }
         }
         .body{
-            text-align: center;
+            width: 382px;
             display: flex;
-            justify-content: start;
-            margin-left: 1rem;
-            .title{
-                color: #8c8c8c;
-                display: block;
-                font-size: 0.8rem;
-                font-weight: bold;
-                line-height: 200%;
+            justify-content: space-between;
+            margin-left: 0.5rem;
+            .body-top {
+                display: flex;
+                align-items: center;
+
+                .title{
+                    color: #8c8c8c;
+                    display: block;
+                    font-size: 0.8rem;
+                    font-weight: bold;
+                    line-height: 200%;
+                }
+                .ticket{
+                    line-height: 1.529rem;
+                    font-size: 0.8rem;
+                }
             }
-            .ticket{
-                line-height: 1.529rem;
-                font-size: 0.8rem;
-            }
+
             .tags{
-                margin-left: 2.353rem;
+                .size {
+                    text-align: center;
+                    width: 2.4rem;
+                }
             }
 
         }
         .ticket-list{
             display: flex;
-            justify-content: start;
+            justify-content: space-between;
             padding: 0.588rem 1.176rem;
-            .icon{
-                line-height: 1.435rem;
+            .ticket-left {
+                display: flex;
+                justify-content: flex-start;
+                .icon{
+                    line-height: 1.435rem;
+                }
+                .ticket{
+                    line-height: 1.435rem;
+                    font-size: 0.8rem;
+                    margin-left: 0.588rem;
+                }
             }
-            .ticket{
-                line-height: 1.435rem;
-                font-size: 0.8rem;
-                margin-left: 0.588rem;
-            }
+
             .tags{
                 margin-left: 4.7rem;
                 text-align: center;

@@ -32,6 +32,10 @@
 </template>
 
 <script>
+    import {addContact, changeContact, delContact, getContact} from "../../../../service";
+    import {mapState, mapMutations} from 'vuex';
+    import {Toast} from 'vant'
+
     export default {
         name: "AddContact",
         data() {
@@ -41,11 +45,12 @@
                 showList: false,
                 showEdit: false,
                 isEdit: false,
-                list: [{
-                    name: '张三',
-                    tel: '13000000000',
-                    id: 0
-                }]
+                // list: [{
+                //     name: '张三',
+                //     tel: '13000000000',
+                //     id: 0
+                // }],
+                list: []
             };
         },
 
@@ -57,22 +62,58 @@
             currentContact() {
                 const id = this.chosenContactId;
                 return id !== null ? this.list.filter(item => item.id === id)[0] : {};
-            }
+            },
+
+            ...mapState(["userInfo"]),
+        },
+
+        mounted() {
+            this.loadContact()
         },
 
         methods: {
             setContact(){
                 // this.$emit('contact', this.)
             },
+            loadContact() {
+                getContact(this.userInfo.uid).then(res => {
+                    // console.log(res);
+                    if (res.status === 200) {
+                        if (res.data === null) {
+                            res.data = []
+                        }
+                        let list = res.data;
+                        for(let item of list) {
+                            item.name = item.coname;
+                            item.tel = item.cphone;
+                            item.id = item.coid;
+                        }
+                        // for(let i in list) {
+                        //     list[i].name = list[i].coname;
+                        //     list[i].tel = list[i].cphone;
+                        //     list[i].id = i
+                        // }
+                        this.list = list;
+                        // console.log(this.list);
+                    } else {
+                        Toast({
+                            message: '网络错误！'
+                        })
+                    }
+                })
+            },
             // 添加联系人
             onAdd() {
-                this.editingContact = { id: this.list.length };
+                console.log('保存');
+
                 this.isEdit = false;
                 this.showEdit = true;
+                // that.editingContact = { id: info.id };
             },
 
             // 编辑联系人
             onEdit(item) {
+                // console.log(item);
                 this.isEdit = true;
                 this.showEdit = true;
                 this.editingContact = item;
@@ -88,26 +129,83 @@
 
             // 保存联系人
             onSave(info) {
-                this.showEdit = false;
-                this.showList = false;
-
-                if (this.isEdit) {
-                    this.list = this.list.map(item => item.id === info.id ? info : item);
+                let that = this;
+                that.showEdit = false;
+                that.showList = false;
+                // console.log(this.isEdit);
+                if (that.isEdit) {
+                    that.list = that.list.map(item => item.id === info.id ? info : item);
+                    changeContact(info.id, info.name, info.tel).then(res => {
+                        if (res.status === 200) {
+                            Toast({
+                                message: '操作成功！'
+                            });
+                            that.loadContact();
+                        } else {
+                            Toast({
+                                message: '操作失败'
+                            });
+                            return
+                        }
+                    });
                 } else {
-                    this.list.push(info);
+                    console.log('info', info);
+                    addContact(that.userInfo.uid, info.name, info.tel).then(res => {
+                        console.log(res);
+                        if (res.status === 200) {
+                            if (res.data === null) {
+                                res.data = []
+                            }
+                            let info = res.data[0];
+                            info.name = info.coname;
+                            info.id = info.coid;
+                            info.tel = info.cphone;
+                            that.infos = info;
+                            // this.list.push(info);
+                            Toast({
+                                message: '操作成功！'
+                            });
+                            that.loadContact();
+                        } else {
+                            Toast({
+                                message: '操作失败'
+                            });
+                            return
+                        }
+                    });
+                    this.list.push(that.infos);
                 }
-                this.chosenContactId = info.id;
-                this.$emit('getcontact', info);
+
+                that.chosenContactId = info.id;
+
+                // this.loadContact();
+                that.$emit('getcontact', info);
                 // console.log(info);
             },
 
             // 删除联系人
             onDelete(info) {
                 this.showEdit = false;
+
+                // if (this.chosenContactId === info.id) {
+                //
+                //     this.chosenContactId = null;
+                //
+                // }
                 this.list = this.list.filter(item => item.id !== info.id);
-                if (this.chosenContactId === info.id) {
-                    this.chosenContactId = null;
-                }
+                delContact(info.id).then(res => {
+                    // console.log(res);
+                    if (res.status === 200) {
+                        Toast({
+                            message: '操作成功！'
+                        });
+                        this.loadContact();
+                    } else {
+                        Toast({
+                            message: '操作失败！'
+                        });
+                    }
+                });
             }
         }
     }

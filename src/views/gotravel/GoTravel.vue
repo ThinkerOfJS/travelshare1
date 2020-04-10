@@ -11,13 +11,13 @@
                     :label="place"
                     shape="round"
                     background="transparent"
-                    @search="onSearch"
+                    @focus="onSearch"
             >
                 <div slot="action" @click="onSearch"><p>搜索</p></div>
             </van-search>
         </div>
 
-        <!-- 景点门票、一日游区域 -->
+        <!-- 景点门票、三日游区域 -->
         <div class="body">
             <div class="position" @click="goScenicspot(place)">
                 <van-image
@@ -62,26 +62,7 @@
                 dayplay_logo: require('../../images/dayplay_logo.jpg'),
                 value: '',
                 place: '',
-                scenicspotList: [
-                    {
-                        id: '1',
-                        scenicspot_img: require('../../images/bj_home.jpeg'),
-                        scenicspot_name: '北京天安门',
-                        scenicspot_introduce: '  坐落在中华人民共和国首都北京市的中心、故宫的南端，与天安门广场以及人民英雄纪念碑、毛主席纪念堂、人民大会堂、中国国家博物馆隔长安街相望，占地面积4800平方米 ',
-                    },
-                    {
-                        id: '2',
-                        scenicspot_img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567583112339&di=85d6913157e38cfdf6b13a3d6d261440&imgtype=0&src=http%3A%2F%2Fimg3.tuniucdn.com%2Fimages%2F2011-09-28%2FG%2FG75pd110Z86qqT20.jpg',
-                        scenicspot_name: '阳澄湖',
-                        scenicspot_introduce: '阳澄湖是太湖平原上第三大淡水湖，湖中两条天然土埂贯穿南北．将湖面分为东、中、西三湖，其中东湖最大．三湖之间有众多港汊相通．是阳澄地区防洪、排涝、引水、灌溉的调蓄湖泊．同时也是苏州市区和昆山市城区主要饮用水水源地。',
-                    },
-                    {
-                        id: '3',
-                        scenicspot_img: require('../../images/youji7.jpeg'),
-                        scenicspot_name: '西塘古镇',
-                        scenicspot_introduce: '西塘古镇属浙江省嘉兴市嘉善县，地处江浙沪三省市交界处，地理位置优越。交通便捷，东距上海90公里，西距杭州110公里，北距苏州85公里。',
-                    }
-                ],
+                scenicspotList: [],
                 showTime: false,
                 tid: 0
             }
@@ -91,8 +72,9 @@
         },
         methods: {
             onSearch(){
-                alert(this.value);
-                this.value = '';
+                this.$router.push({
+                    name: 'searchs',
+                })
             },
             goScenicspot(place){
                 this.$router.push({
@@ -105,18 +87,36 @@
                 });
             },
             loadScecispot(flag) {
+                let _that = this;
                 let top = 0;
                 if (flag) {
                     top = this.scenicspotList.length;
                 }
-                let result = getHotScenicspot(top, 5);
-                if(result.status == 200) {
-                    if (flag) {
-                        this.scenicspotList = this.scenicspotList.concat(result.data)
-                    } else {
-                        this.scenicspotList = result.data
+                getHotScenicspot(top, 5).then(res => {
+                    // console.log(res);
+                    if(res.status == 200) {
+                        let scenicspotList = res.data;
+                        for(let item of scenicspotList) {
+                            let images = item.imgurl.split(',');
+                            for (let i in images) {
+                                if (images[i] === '') {
+                                    images.splice(i,1);
+                                } else {
+                                    images[i] = _that.host + images[i];
+                                }
+                            }
+                            item.images = images;
+                            item.pics = images[0];
+                        }
+                        if (flag) {
+                            _that.scenicspotList = _that.scenicspotList.concat(scenicspotList);
+                        } else {
+                            _that.scenicspotList = scenicspotList;
+                        }
+                        console.log( _that.scenicspotList);
                     }
-                }
+                });
+
 
             },
             loadMoreScenicspot() {

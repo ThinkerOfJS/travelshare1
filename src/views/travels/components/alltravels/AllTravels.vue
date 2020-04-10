@@ -50,7 +50,7 @@
             getHotTravelsList() {
                 let _this = this;
                 getHotTravels().then(res => {
-                    console.log(res);
+                    // console.log(res);
                     if (res.status === 200) {
                         if (res.data === null) {
                             res.data = []

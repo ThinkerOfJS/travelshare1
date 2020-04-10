@@ -10,7 +10,6 @@ export const changeUserInfo = (nickname, email, phone, introduction, avatarsrc) 
 export const getUserInfo = (username) => ajax(BASE_URL + '/user/getuser', {username}, 'GET');
 export const getUserInfoByUid = (uid) => ajax(BASE_URL + '/user/userinfo', {uid}, 'GET');
 // 游记模块
-export const getHotScenicspot = (top,end) => ajax(BASE_URL + '/travels/gethotsce', {top,end}, 'GET');
 export const getHotTravels = () => ajax(BASE_URL + '/travels/concentration', {}, 'GET');
 export const getNotice = () => ajax(BASE_URL + '/announcement/list', {}, 'GET');
 
@@ -27,7 +26,21 @@ export const addTravels = (param) => ajax(BASE_URL + '/travels/add', param, 'GET
 export const searchTravels = (title) => ajax(BASE_URL + '/travels/search', {title}, 'GET');
 
 // 景区门票模块
-export const getDayPlay = (did) => ajax(BASE_URL + '/scenicspot/getdayplay', {did}, 'GET');
-export const getAttractions = (tid) => ajax(BASE_URL + '/scenicspot/getattractions', {tid}, 'GET');
-export const getScenicspotTicket = (tid) => ajax(BASE_URL + '/scenicspot/getsceticket', {tid}, 'GET');
-export const addOrder = (tid,tname,tnum,contact,phone,price) => ajax(BASE_URL + '/scenicspot/addorder', {tid,tname,tnum,contact,phone,price}, 'GET');
+export const getDayPlay = (did) => ajax(BASE_URL + '/scenicspot/dayplay', {did}, 'GET');
+export const getAttractions = (sid) => ajax(BASE_URL + '/scenicspot/attractions', {sid}, 'GET');
+export const getScenicspotDetail = (sid) => ajax(BASE_URL + '/scenicspot/detail', {sid}, 'GET');
+export const getScenicspotTicket = (sid) => ajax(BASE_URL + '/scenicspot/sceticket', {sid}, 'GET');
+export const searchScenicspot = (title) => ajax(BASE_URL + '/scenicspot/search', {title}, 'GET');
+export const getHotScenicspot = (start, end) => ajax(BASE_URL + '/scenicspot/hot', {start, end}, 'POST');
+
+
+export const addOrder = (oprice, coname, cphone, uid, sname, orderDetList) => ajax(BASE_URL + '/order/add', {oprice, coname, cphone, uid, sname, orderDetList}, 'POST');
+export const getOrderList = (uid, start, end) => ajax(BASE_URL + '/order/list', {uid, start, end}, 'POST');
+export const getOrderDetList = (ordernumber) => ajax(BASE_URL + '/order/detlist', {ordernumber}, 'GET');
+
+export const getContact = (uid) => ajax(BASE_URL + '/contact/list', {uid}, 'GET');
+export const changeContact = (coid, coname, cphone) => ajax(BASE_URL + '/contact/change', {coid, coname, cphone}, 'POST');
+export const addContact = (uid, coname, cphone) => ajax(BASE_URL + '/contact/add', {uid, coname, cphone}, 'POST');
+export const delContact = (coid) => ajax(BASE_URL + '/contact/delete', {coid}, 'GET');
+
+

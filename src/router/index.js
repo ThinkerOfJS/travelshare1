@@ -14,7 +14,9 @@ const Mine = () => import('./../views/mine/Mine.vue');
 const TravelDesc = () => import('./../components/TravelDesc.vue');
 const WriteTravel = () => import('./../views/travels/components/WriteTravel.vue');
 const Searchs = () => import('./../views/travels/components/Search.vue');
+
 const Scenicspot = () => import('./../views/gotravel/components/scenicspot/Scenicspot.vue');
+const Search = () => import('./../views/gotravel/components/Searchs.vue');
 const Scenicspots = () => import('./../views/gotravel/components/scenicspot/Scenicspots.vue');
 const BuyTicket = () => import('./../views/gotravel/components/scenicspot/BuyTicket.vue');
 const Order = () => import('./../views/gotravel/components/scenicspot/Order.vue');
@@ -87,6 +89,11 @@ export default new Router({
                     path: 'gotravel/scenicspot',
                     name: 'scenicspot',
                     component: Scenicspot
+                },
+                {
+                    path: 'gotravel/search',
+                    name: 'searchs',
+                    component: Search
                 },
                 {
                     path: 'gotravel/scenicspot/scenicspots',

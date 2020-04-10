@@ -29,7 +29,7 @@
         },
         mounted(){
             this.uid = this.$route.params.userId;
-            // console.log('uid',this.uid);
+            console.log('uid',this.uid);
             this.getCollectionList(false);
         },
         methods: {

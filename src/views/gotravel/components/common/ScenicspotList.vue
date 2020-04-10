@@ -5,11 +5,11 @@
             class="body"
             v-for="(item, index) in scenicspotList"
             :key="index"
-            @click="toScenicspotDesc(item.id, item.scenicspot_name, item.scenicspot_img)">
-            <img :src="item.scenicspot_img" alt="">
+            @click="toScenicspotDesc(item.sid, item.title, item.images)">
+            <img :src="item.pics" alt="">
             <div class="content">
-                <span class="scenicspot-name hidden">{{ item.scenicspot_name }}</span>
-                <span class="scenicspot-introduce hidden">{{ item.scenicspot_introduce }}</span>
+                <span class="scenicspot-name hidden">{{ item.title }}</span>
+                <span class="scenicspot-introduce hidden" v-html="item.address">{{ item.address }}</span>
                 <div class="tag-playtime">
                     <van-tag class="tag" size="medium" color="#FF9900" type="primary">查看详情</van-tag>
                     <span class="playtime" v-show="showTime">建议游玩时长{{3+Math.floor(Math.random()*10)}}小时</span>
@@ -25,7 +25,6 @@
         name: "Scenicspot",
         data(){
             return {
-
             }
         },
         methods: {

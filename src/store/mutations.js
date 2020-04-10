@@ -6,8 +6,9 @@ import {
     SELECTED_All_TICKETS,
     CLEAR_ORDER,
     SAVE_USER,
-    GET_USER
-} from './mutations-type'
+    GET_USER,
+    CLEAR_USER
+} from './mutations-type';
 
 import { getStore, setStore, removeStore } from './../config/global'
 
@@ -113,5 +114,10 @@ export default {
         if (user) {
             state.userInfo = JSON.parse(user);
         }
+    },
+
+    [CLEAR_USER](state) {
+        state.userInfo = {};
+        setStore('userInfo', state.userInfo);
     }
 }

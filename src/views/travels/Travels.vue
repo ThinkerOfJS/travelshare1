@@ -145,7 +145,7 @@
 
         }
         .btn{
-            top: 87%;
+            top: 85.5%;
             margin-left: 50%;
             left: -43px;
             position: fixed;

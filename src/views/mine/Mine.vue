@@ -110,7 +110,7 @@
             ...mapState(["userInfo"]),
         },
         methods: {
-            ...mapMutations(["SAVE_USER"]),
+            ...mapMutations(["CLEAR_ORDER","SAVE_USER", "CLEAR_USER"]),
             goChangeDocument(userId){
                 this.$router.push({
                     name: 'changedocument',
@@ -125,6 +125,8 @@
                 this.introduction = this.userInfo.introduction;
             },
             goLogin(){
+                this.CLEAR_ORDER();
+                this.CLEAR_USER();
                 this.$router.push({
                     name: 'login',
                 });
