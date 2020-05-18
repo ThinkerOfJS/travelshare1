@@ -14,23 +14,23 @@
                     :images="images"
                     @change="onChange"
             >
+
                 <template>{{ index }}</template>
             </van-image-preview>
         </div>
 
         <hr>
         <div class="body">
-
             <p class="title">景区推荐</p>
             <ScenicspotList :scenicspotList="scenicspotList" />
-            <van-button class="btn" type="info" color="#87CEEB" round>加载更多</van-button>
+            <van-button class="btn" type="info" color="#87CEEB" @click="loadMore" round>加载更多</van-button>
         </div>
     </div>
 </template>
 
 <script>
-    import ScenicspotList from './../common/ScenicspotList'
-
+    import ScenicspotList from './../common/ScenicspotList';
+    import {getHotScenicspot} from "../../../../service";
 
     export default {
         name: "Scenicspot",
@@ -43,33 +43,11 @@
                     require('../../../../images/bj_home2.jpeg'),
                     require('../../../../images/bj_home3.jpeg'),
                 ],
-                scenicspotList: [
-                    {
-                        id: '1',
-                        scenicspot_img: require('../../../../images/bj_home.jpeg'),
-                        scenicspot_name: '北京天安门',
-                        scenicspot_introduce: '  坐落在中华人民共和国首都北京市的中心、故宫的南端，与天安门广场以及人民英雄纪念碑、毛主席纪念堂、人民大会堂、中国国家博物馆隔长安街相望，占地面积4800平方米 ',
-                    },
-                    {
-                        id: '2',
-                        scenicspot_img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567583112339&di=85d6913157e38cfdf6b13a3d6d261440&imgtype=0&src=http%3A%2F%2Fimg3.tuniucdn.com%2Fimages%2F2011-09-28%2FG%2FG75pd110Z86qqT20.jpg',
-                        scenicspot_name: '北京天安门',
-                        scenicspot_introduce: '   坐落在中华人民共和国首都北京市的中心、故宫的南端，与天安门广场以及人民英雄纪念碑、毛主席纪念堂、人民大会堂、中国国家博物馆隔长安街相望，占地面积4800平方米',
-                    },
-                    {
-                        id: '3',
-                        scenicspot_img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567583112339&di=85d6913157e38cfdf6b13a3d6d261440&imgtype=0&src=http%3A%2F%2Fimg3.tuniucdn.com%2Fimages%2F2011-09-28%2FG%2FG75pd110Z86qqT20.jpg',
-                        scenicspot_name: '北京天安门',
-                        scenicspot_introduce: '   坐落在中华人民共和国首都北京市的中心、故宫的南端，与天安门广场以及人民英雄纪念碑、毛主席纪念堂、人民大会堂、中国国家博物馆隔长安街相望，占地面积4800平方米',
-                    },
-                    {
-                        id: '4',
-                        scenicspot_img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567583112339&di=85d6913157e38cfdf6b13a3d6d261440&imgtype=0&src=http%3A%2F%2Fimg3.tuniucdn.com%2Fimages%2F2011-09-28%2FG%2FG75pd110Z86qqT20.jpg',
-                        scenicspot_name: '北京天安门',
-                        scenicspot_introduce: '   坐落在中华人民共和国首都北京市的中心、故宫的南端，与天安门广场以及人民英雄纪念碑、毛主席纪念堂、人民大会堂、中国国家博物馆隔长安街相望，占地面积4800平方米',
-                    }
-                ]
+                scenicspotList: []
             }
+        },
+        mounted() {
+            this.loadScecispot(false);
         },
         methods: {
             goBack(){
@@ -81,6 +59,40 @@
             onChange(index) {
                 this.index = index;
             },
+            loadScecispot(flag) {
+                let _that = this;
+                let top = 0;
+                if (flag) {
+                    top = this.scenicspotList.length;
+                }
+                getHotScenicspot(top, 5).then(res => {
+                    // console.log(res);
+                    if(res.status == 200) {
+                        let scenicspotList = res.data;
+                        for(let item of scenicspotList) {
+                            let images = item.imgurl.split(',');
+                            for (let i in images) {
+                                if (images[i] === '') {
+                                    images.splice(i,1);
+                                } else {
+                                    images[i] = _that.host + images[i];
+                                }
+                            }
+                            item.images = images;
+                            item.pics = images[0];
+                        }
+                        if (flag) {
+                            _that.scenicspotList = _that.scenicspotList.concat(scenicspotList);
+                        } else {
+                            _that.scenicspotList = scenicspotList;
+                        }
+                        // console.log( _that.hotscenicspotList);
+                    }
+                });
+            },
+            loadMore() {
+                this.loadScecispot(true)
+            }
         },
         components: {
             ScenicspotList

@@ -23,7 +23,7 @@
                 <div class="ticket-body">
                     <div class="ticket-name">
                         <span style="margin-left: 2.5rem; color: #999999">门票说明：</span>
-                        <span style="margin-left: 0.882rem; color: #999999;">{{ ticket.ticketName }}</span>
+                        <span style="color: #999999;">{{ ticket.ticketName }}</span>
                     </div>
                     <div class="ticket-num">
                         <span style="margin-left: 2.5rem;">购买数量：</span>
@@ -45,7 +45,7 @@
         <van-submit-bar
                 :price="allPrice"
                 button-text="提交订单"
-                @submit="onSubmit"
+                @submit="openActionSheet"
         >
             <van-switch
                     v-model="isSellected"
@@ -56,7 +56,30 @@
                     @change="sellectAll(isSellected)"
             />
         </van-submit-bar>
+        <van-action-sheet v-model="show" title="密码">
+            <div class="content">
+                <van-password-input
+                        :value="value"
+                        :focused="showKeyboard"
+                        @focus="showKeyboard = true"
+                />
+                <!-- 数字键盘 -->
+                <van-number-keyboard
+                        :show="show"
+                        theme="custom"
+                        extra-key="."
+                        close-button-text="完成"
+                        @blur="show = false"
+                        @input="onInput"
+                        @delete="onDelete"
+                        @close="onSubmit"
+                />
+            </div>
+            <!-- 密码输入框 -->
+
+        </van-action-sheet>
     </div>
+
 </template>
 
 <script>
@@ -73,7 +96,10 @@
                 contact: {
                     name: '',
                     tel: ''
-                }
+                },
+                value: '',
+                showKeyboard: true,
+                show: false
             }
         },
         mounted(){
@@ -113,6 +139,15 @@
             ...mapMutations(["ADD_TICKET","INIT_ORDER", "REDUCE_TICKET", "SELECTED_SINGER_TICKETS", "SELECTED_All_TICKETS", "CLEAR_ORDER"]),
             goBack(){
                 this.$router.go(-1);
+            },
+            openActionSheet(){
+                this.show = !this.show;
+            },
+            onInput(key) {
+                this.value = (this.value + key).slice(0, 6);
+            },
+            onDelete() {
+                this.value = this.value.slice(0, this.value.length - 1);
             },
             initOrder(){
                 this.INIT_ORDER();
@@ -156,6 +191,13 @@
             getContact(contact){
                 Object.assign(this.contact, contact);
             },
+            toMyOrder(){
+                let that = this;
+                that.$router.push({
+                    name: 'myorder',
+                    params: { userId: that.userInfo.uid }
+                });
+            },
             onSubmit(){
                 let that = this;
                 let orderDetList = [];
@@ -176,11 +218,6 @@
                 let cphone = that.contact.tel;
                 let oprice = parseFloat(that.allPrice/100);
                 let sname = that.address;
-                // console.log('tickets', this.tickets);
-                // console.log('contact', this.contact);
-                // console.log('address', this.address);
-                // console.log('allpice',  parseFloat(this.allPrice/100));
-                // console.log('uid', this.userInfo.uid);
                 addOrder(oprice, coname, cphone, that.userInfo.uid, sname, orderDetList).then(res => {
                     console.log('下单结果',res);
                     if (res.status === 200) {
@@ -191,13 +228,10 @@
                             return
                         } else {
                             Toast({
-                                message: res.data.msg
+                                message: '支付成功！'
                             });
                             that.CLEAR_ORDER();
-                            that.$router.push({
-                                name: 'myorder',
-                                params: { userId: that.userInfo.uid }
-                            })
+                            setTimeout(this.toMyOrder(), 1000);
                         }
                     }
                 });
@@ -249,6 +283,7 @@
                     .ticket-name{
                         display: flex;
                         align-items: center;
+
                         /*justify-content: space-between;*/
                     }
                     .ticket-num{
@@ -261,6 +296,10 @@
                     }
                 }
             }
+        }
+        .content {
+            height: 15.294rem;
+            padding: 16px;
         }
     }
 </style>

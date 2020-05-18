@@ -26,13 +26,13 @@ export const addTravels = (param) => ajax(BASE_URL + '/travels/add', param, 'GET
 export const searchTravels = (title) => ajax(BASE_URL + '/travels/search', {title}, 'GET');
 
 // 景区门票模块
-export const getDayPlay = (did) => ajax(BASE_URL + '/scenicspot/dayplay', {did}, 'GET');
+export const getDayPlay = () => ajax(BASE_URL + '/scenicspot/dayplay', {}, 'GET');
+export const getDayPlayList = () => ajax(BASE_URL + '/scenicspot/dayplay/list', {}, 'GET');
 export const getAttractions = (sid) => ajax(BASE_URL + '/scenicspot/attractions', {sid}, 'GET');
 export const getScenicspotDetail = (sid) => ajax(BASE_URL + '/scenicspot/detail', {sid}, 'GET');
 export const getScenicspotTicket = (sid) => ajax(BASE_URL + '/scenicspot/sceticket', {sid}, 'GET');
 export const searchScenicspot = (title) => ajax(BASE_URL + '/scenicspot/search', {title}, 'GET');
 export const getHotScenicspot = (start, end) => ajax(BASE_URL + '/scenicspot/hot', {start, end}, 'POST');
-
 
 export const addOrder = (oprice, coname, cphone, uid, sname, orderDetList) => ajax(BASE_URL + '/order/add', {oprice, coname, cphone, uid, sname, orderDetList}, 'POST');
 export const getOrderList = (uid, start, end) => ajax(BASE_URL + '/order/list', {uid, start, end}, 'POST');

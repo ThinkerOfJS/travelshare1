@@ -34,6 +34,16 @@
             goBack(){
                 this.$router.go(-1);
             },
+            richTextFormat(value) {
+                // value = value.replace(/<\/?[^>]*>/g,'')
+                value = value.replace(/<\/?.+?>/g,'');
+                value = value.replace(/\s+/g,'');
+                if (value.length > 30) {
+                    return value.slice(0, 50);
+                }
+                console.log(value);
+                return value;
+            },
             getTravelsList(flag) {
                 let start = 0;
                 if (flag) {
@@ -48,6 +58,7 @@
                         for(let item of list) {
                             item.date = item.date.slice(0,10);
                             item.pics = item.pics.split(',');
+                            item.content = this.richTextFormat(item.content);
                         }
                         if (flag) {
                             this.storyList = this.storyList.concat(list)

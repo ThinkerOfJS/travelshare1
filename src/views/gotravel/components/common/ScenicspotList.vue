@@ -12,7 +12,7 @@
                 <span class="scenicspot-introduce hidden" v-html="item.address">{{ item.address }}</span>
                 <div class="tag-playtime">
                     <van-tag class="tag" size="medium" color="#FF9900" type="primary">查看详情</van-tag>
-                    <span class="playtime" v-show="showTime">建议游玩时长{{3+Math.floor(Math.random()*10)}}小时</span>
+                    <span class="playtime" v-show="showTime">建议游玩时长{{item.playtime}}小时</span>
                 </div>
             </div>
 

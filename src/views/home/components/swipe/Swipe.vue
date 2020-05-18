@@ -1,10 +1,9 @@
 <template>
     <swiper id="swipe" :options="swiperOption" ref="mySwiper">
         <!-- slides -->
-        <swiper-slide v-for="(img, index) in imgs" :key="index">
-            <img :src="img.img_url" alt="">
+        <swiper-slide v-for="(img, index) in hot_scenicspot" :key="index">
+            <img :src="img.pics" alt="">
         </swiper-slide>
-        <!-- Optional controls -->
         <div class="swiper-pagination"  slot="pagination"></div>
     </swiper>
 </template>
@@ -24,9 +23,9 @@
                     },
                     loop: true,
                     autoplay: {
-                        delay: 1500
+                        delay: 1800
                     },
-                    speed: 600,
+                    speed: 1500,
                     // 滑动后回调函数
                     on: {
                         slideChangeTransitionEnd(){
@@ -47,6 +46,9 @@
         components: {
             swiper,
             swiperSlide
+        },
+        props: {
+            hot_scenicspot: Array
         }
     }
 </script>

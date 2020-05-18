@@ -94,3 +94,13 @@ import { Cell, CellGroup } from 'vant';
 
 Vue.use(Cell);
 Vue.use(CellGroup);
+
+// 数字键盘，密码输入框
+import { PasswordInput, NumberKeyboard } from 'vant';
+
+Vue.use(PasswordInput);
+Vue.use(NumberKeyboard);
+
+// 动作面板
+import { ActionSheet } from 'vant';
+Vue.use(ActionSheet);

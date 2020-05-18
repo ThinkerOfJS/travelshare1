@@ -1,7 +1,7 @@
 <template>
     <div id="travellist">
         <div class="travel-item" v-for="(story, index) in storyList" :key="index" @click="goDetail(story.tid)" >
-            <img :src="host + story.pics[0]" v-lazy="host + story.pics[0]" alt="" >
+            <img :src="host + story.pics[0]" v-lazy="host + story.pics[0]" alt="">
             <div class="travel-content">
                 <p class="title">
                     <span class="place">{{ story.place }}</span>
@@ -20,7 +20,11 @@
         data(){
             return {
                 type: ['民宿', '美食', '景点', '艺术', '灵感'],
+                // storyLists: this.storyList
             }
+        },
+        mounted() {
+
         },
         methods: {
             goDetail(storyId) {
@@ -28,7 +32,16 @@
                     name: 'traveldesc',
                     params: { storyId }
                 });
-            }
+            },
+            richTextFormat(value) {
+                // value = value.replace(/<\/?[^>]*>/g,'')
+                value = value.replace(/<\/?.+?>/g,'');
+                value = value.replace(/\s+/g,'');
+                if (value.length > 30) {
+                    return value.slice(0, 50) + "...";
+                }
+                return value;
+            },
         },
         props: {
             storyList: Array

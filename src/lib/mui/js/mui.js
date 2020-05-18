@@ -865,7 +865,7 @@ var mui = (function(document, undefined) {
 			}
 			evt.initEvent(event, bubbles, true);
 			return evt;
-		};
+		}
 		CustomEvent.prototype = window.Event.prototype;
 		window.CustomEvent = CustomEvent;
 	}
@@ -967,7 +967,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
 		window.cancelAnimationFrame = window.webkitCancelAnimationFrame || window.webkitCancelRequestAnimationFrame || function(id) {
 			clearTimeout(id);
 		};
-	};
+	}
 }(window));
 /**
  * fastclick(only for radio,checkbox)
@@ -2012,7 +2012,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
 				scrollTop = _scrollTop;
 			}
 		}, 100);
-	};
+	}
 	$(function() {
 		var classList = document.body.classList;
 		var os = [];
@@ -3170,7 +3170,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
 
 		setHeader('X-Requested-With', 'XMLHttpRequest');
 		setHeader('Accept', mime || '*/*');
-		if(!!(mime = settings.mimeType || mime)) {
+		if(mime = settings.mimeType || mime) {
 			if(mime.indexOf(',') > -1) {
 				mime = mime.split(',', 2)[0];
 			}
@@ -4948,7 +4948,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
 						return;
 					}
 					//仅slider显示状态进行自动轮播
-					if (!!(slider.offsetWidth || slider.offsetHeight)) {
+					if (slider.offsetWidth || slider.offsetHeight) {
 						self.nextItem(true);
 						//下一个
 					}
@@ -5487,7 +5487,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
             options = options || {}
             if (typeof options === 'string') {
                 options = $.parseJSON(options);
-            };
+            }
             !options.webviewId && (options.webviewId = (plus.webview.currentWebview().id || plus.webview.currentWebview().getURL()));
             var pullRefreshApi = null;
             var attrWebviewId = options.webviewId && options.webviewId.replace(/\//g, "_"); //替换所有"/"
@@ -7051,13 +7051,13 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
 	};
 
 	function toggleEvents(element, isRemove) {
-		var method = !!isRemove ? 'removeEventListener' : 'addEventListener';
+		var method = isRemove ? 'removeEventListener' : 'addEventListener';
 		element[method]('drag', handleEvent);
 		element[method]('dragend', handleEvent);
 		element[method]('swiperight', handleEvent);
 		element[method]('swipeleft', handleEvent);
 		element[method]('flick', handleEvent);
-	};
+	}
 	/**
 	 * 打开滑动菜单
 	 * @param {Object} el

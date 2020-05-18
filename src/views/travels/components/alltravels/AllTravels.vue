@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="youlikeTravel">
-            <p class="youlikeTitle title">猜你喜欢</p>
+            <p class="youlikeTitle title">热门推荐</p>
             <div class="youlikeContent">
                 <TravelList :storyList="storyList" />
             </div>

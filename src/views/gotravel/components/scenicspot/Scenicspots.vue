@@ -1,5 +1,5 @@
 <template>
-    <!--景点门票-->
+    <!-- 景区详情组件-->
     <div id="scenicspots">
         <div class="top">
             <van-icon name="arrow-left" size="1.25rem" @click="goBack" color="#f5f5f5"/>

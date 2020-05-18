@@ -12,7 +12,7 @@
                     <span class="order-num">订单编号：{{order.ordernumber}}</span>
                 </div>
 
-                <div class="order-ticket" v-for="(item, indexs) in order.orderDetList" :key="indexs">
+                <div class="order-ticket" v-for="(item, indexs) in orderList[index].orderDetList" :key="indexs">
                     <span class="order-ticket-tname">{{item.tname}}</span>
                     <span class="order-ticket-tnumber">X  {{item.tnumber}}</span>
                 </div>
@@ -32,6 +32,7 @@
             <van-button class="btn1" type="info" color="#87CEEB" @click="loadMore" round>加载更多</van-button>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -43,6 +44,7 @@
         data(){
             return {
                 uid: 0,
+                show: false,
                 orderList: []
             }
         },
@@ -56,46 +58,92 @@
             goBack() {
                 this.$router.go(-1);
             },
-            loadOrderList(flag) {
+            async loadOrderList(flag) {
                 let that = this;
                 let offset = 0;
                 if (flag) {
                     offset = that.orderList.length;
                 }
-                getOrderList(that.uid,offset, 3).then(res => {
-                    // console.log('订单数据', res);
-                    if (res.status === 200) {
-                        if (res.data === null) {
-                            res.data = []
-                        }
-                        let order = that.orderList;
-                        if (flag) {
-                            order = order.concat(res.data);
-                        } else {
-                            order = res.data
-                        }
+                //  getOrderList(that.uid,offset, 3).then(res => {
+                //     // console.log('订单数据', res);
+                //     if (res.status === 200) {
+                //         if (res.data === null) {
+                //             res.data = []
+                //         }
+                //         let order = that.orderList;
+                //         if (flag) {
+                //             order = order.concat(res.data);
+                //         } else {
+                //             order = res.data
+                //         }
+                //
+                //         for (let i in order) {
+                //             that.loadOrderDetList(i, order[i].ordernumber);
+                //             order[i].odate = order[i].odate.slice(0, 16);
+                //         }
+                //         that.orderList = order;
+                //         console.log(that.orderList);
+                //     } else  {
+                //         Toast({
+                //             message: '网络错误！'
+                //         })
+                //     }
+                // })
+                let res = await getOrderList(that.uid,offset, 3);
+                if (res.status === 200) {
+                    if (res.data === null) {
+                        res.data = []
+                    }
+                    let order = that.orderList;
+                    if (flag) {
+                        order = order.concat(res.data);
+                    } else {
+                        order = res.data
+                    }
 
-                        for (let i in order) {
-                            that.loadOrderDetList(i, order[i].ordernumber);
-                            order[i].odate = order[i].odate.slice(0, 16);
+                    for (let i in order) {
+                        // that.loadOrderDetList(i, order[i].ordernumber);
+
+                        order[i].odate = order[i].odate.slice(0, 16);
+                        let res = await getOrderDetList(order[i].ordernumber);
+                        if (res.status === 200) {
+                            if (res.data === null) {
+                                res.data = [];
+                            }
+
+                            order[i].orderDetList = res.data;
                         }
-                        that.orderList = order;
-                        console.log(that.orderList);
                     }
-                })
+
+                    that.orderList = order;
+                    console.log(that.orderList);
+                } else  {
+                    Toast({
+                        message: '网络错误！'
+                    })
+                }
             },
-            loadOrderDetList(i, ordernumber) {
+            async loadOrderDetList(i, ordernumber) {
                 let that = this;
-                getOrderDetList(ordernumber).then(res => {
-                    // console.log('门票', res);
-                    if (res.status === 200) {
-                        if (res.data === null) {
-                            res.data = [];
-                        }
-                        that.orderList[i].orderDetList = res.data;
+                // getOrderDetList(ordernumber).then(res => {
+                //     // console.log('门票', res);
+                //     if (res.status === 200) {
+                //         if (res.data === null) {
+                //             res.data = [];
+                //         }
+                //         that.orderList[i].orderDetList = res.data;
+                //     }
+                // });
+                let res = await getOrderDetList(ordernumber);
+                if (res.status === 200) {
+                    if (res.data === null) {
+                        res.data = [];
                     }
-                });
-                console.log('orderlist', that.orderList);
+
+                    this.orderList[i].orderDetList = res.data;
+
+                }
+                console.log('orderlist'+i , that.orderList);
             },
             loadMore() {
                 this.loadOrderList(true)
@@ -159,7 +207,7 @@
                     .order-ticket-tname {
                         font-size: 17px;
                         color: darkslategrey;
-                        margin-right: 1.176rem;
+                        margin-right: 0.5rem;
                     }
                     .order-ticket-tnumber {
                         width: 3.529rem;
@@ -200,5 +248,6 @@
             box-shadow: 0 0 9px #999;
             margin-bottom: 5.882rem;
         }
+
     }
 </style>

@@ -173,6 +173,7 @@
                     line-height: 1.435rem;
                 }
                 .ticket{
+                    max-width: 150px;
                     line-height: 1.435rem;
                     font-size: 0.8rem;
                     margin-left: 0.588rem;

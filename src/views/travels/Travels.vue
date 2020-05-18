@@ -73,7 +73,17 @@
             getInitData(){
 
             },
-
+            // 富文本过滤
+            richTextFormat(value) {
+                // value = value.replace(/<\/?[^>]*>/g,'')
+                value = value.replace(/<\/?.+?>/g,'');
+                value = value.replace(/\s+/g,'');
+                if (value.length > 30) {
+                    return value.slice(0, 50);
+                }
+                console.log(value);
+                return value;
+            },
             // 根据游记分类获取筛选后的游记
             getTravels(flag) {
                 let _this = this;
@@ -93,6 +103,7 @@
                         for (let item of list) {
                             item.date = item.date.slice(0,10);
                             item.pics = item.pics.split(',');
+                            item.content = _this.richTextFormat(item.content);
                         }
 
                         if (flag) {
@@ -102,7 +113,6 @@
                             _this.storyList = list
                         }
                         // console.log('分类游记',_this.storyList);
-
                     } else {
                         Toast({
                             message: '网络错误！'

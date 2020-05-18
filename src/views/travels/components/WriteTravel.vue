@@ -70,7 +70,6 @@
 
 <script>
     import getCurrentCityName from './../components/map'
-    import {addTravels} from './../../../service/index'
     import {mapState, mapMutations} from 'vuex';
     import {Toast} from 'vant'
 
@@ -80,7 +79,7 @@
         data() {
             return {
                 // ...mapState(["userInfo"]),
-                content: '请输入您的故事',
+                content: '',
                 // img: require('/img/b5566963-9a4d-7f0c-514b-f6e701f1843c系统客户端架构图.png'),
                 img: this.host+'/img/253b83d2-9fd5-d780-bd57-938316aa07dbWebpack打包示意图.png',
                 show: false,

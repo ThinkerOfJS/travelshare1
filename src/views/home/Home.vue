@@ -35,6 +35,10 @@
             Concentration,
             Announcement
         },
+        mounted() {
+            this.getData();
+            this.loadScecispot();
+        },
         methods: {
             getData(){
                 let _this = this;
@@ -71,9 +75,33 @@
                 })
                 // _this.notice = getNotice(1,3);
             },
-        },
-        mounted() {
-            this.getData();
+            loadScecispot() {
+                let _that = this;
+                getHotScenicspot(0, 5).then(res => {
+                    console.log('swipe',res.data);
+                    if(res.status === 200) {
+                        if (res.data === null) {
+                            res.data = [];
+                        }
+                        console.log(res.data);
+                        let hot_scenicspot = res.data;
+                        console.log('hot_scenicspot',hot_scenicspot);
+                        for(let item of hot_scenicspot) {
+                            let images = item.imgurl.split(',');
+                            for (let i in images) {
+                                if (images[i] === '') {
+                                    images.splice(i,1);
+                                } else {
+                                    images[i] = _that.host + images[i];
+                                }
+                            }
+                            item.images = images;
+                            item.pics = images[0];
+                        }
+                        _that.hot_scenicspot = hot_scenicspot;
+                    }
+                });
+            },
         }
     }
 </script>
